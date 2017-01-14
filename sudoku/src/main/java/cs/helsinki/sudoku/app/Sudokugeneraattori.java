@@ -1,7 +1,6 @@
 package cs.helsinki.sudoku.app;
 import static cs.helsinki.sudoku.util.GeneraattoriUtil.*;
 import static cs.helsinki.sudoku.util.SopivatLuvut.*;
-import static cs.helsinki.sudoku.util.Util.tulosta;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,29 +10,21 @@ public class Sudokugeneraattori {
     private int koko;
     private int [][] ruudut;
     private int [][] ratkaisu;
-    private int kutsujenRaja;
-    private int kutsut;
     private ArrayList<SimpleEntry<Integer,Integer>> ruutulista;
     private int tyhjennettavanRivi;
     private int tyhjennettavanSarake;
     private int tyhjennettavanAlkupArvo;
     
-    public Sudokugeneraattori (int kutsujenRaja) {
+    public Sudokugeneraattori () {
         this.koko = 9;
         this.ruudut = new int [koko] [koko];
         this.ratkaisu = new int [koko] [koko];
-        this.kutsut = 0;
-        this.kutsujenRaja = kutsujenRaja;
         this.ruutulista = new ArrayList<>();
         this.tyhjennettavanRivi = -1;
         this.tyhjennettavanSarake = -1;
         this.tyhjennettavanAlkupArvo = 0;
     }
     
-    public Sudokugeneraattori() {
-        this(Integer.MAX_VALUE);
-    }
-
     public void asetaRuutulista(ArrayList<SimpleEntry<Integer,Integer>> lista) {
         this.ruutulista = lista;
     }
@@ -50,11 +41,7 @@ public class Sudokugeneraattori {
     public void asetaRuudut(int[][] pohja) {      
         ruudut = pohja;
     }
-    
-    public void tyhjennaKutsut()  {
-        kutsut = 0;
-    } 
-        
+   
     public int[][] annaRuudut() {
         return ruudut;
     }
@@ -113,24 +100,10 @@ public class Sudokugeneraattori {
     */ 
     
     public boolean tayta(int[][] lauta, int rivi, int sarake, boolean saaTyhjentaa, boolean vertaaRatkaisuun) {
-        this.kutsut++;
-        // when creating Sudokus, use a threshold of e.g. 1000
-        // when solving Sudokus, use a threshold of e.g. 300000
-        if (this.kutsut > this.kutsujenRaja) {
-            tulosta(koko, lauta);
-            if (saaTyhjentaa) {
-                tyhjennaKutsut();
-                tyhjennaLauta(lauta);
-            } else {
-                return false;
-            }
-        }
        
        if (onRatkaistu(lauta)) {
             if (!vertaaRatkaisuun) {
                 ruudut = lauta;
-                System.out.println(kutsut);
-                tyhjennaKutsut();
             }
             return true;
         };

@@ -16,7 +16,7 @@ public class PelimoottoriTest {
     
     @Before
     public void setUp() {
-        Sudokugeneraattori s = new Sudokugeneraattori(20000);
+        Sudokugeneraattori s = new Sudokugeneraattori();
         m = new Pelimoottori(s);
         tyhjat = 40;
         m.asetaTyhjennettavienLkm(tyhjat);
