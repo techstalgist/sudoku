@@ -92,6 +92,23 @@ public class SudokugeneraattoriTestUtil {
          };
     }
     
+    public int[][] lautaJollaEiYhtaanSopivaa() {
+        return new int[][]{
+                        {5,8,7,1,6,4,9,3,2},
+                        {1,4,6,9,2,3,7,5,8},
+                        {3,2,9,5,7,8,1,6,4},
+                        
+                        {9,5,2,7,3,6,4,8,1},
+                        {8,6,1,2,5,9,3,7,0},
+                        {7,0,3,8,4,1,2,9,6},
+                        
+                        {2,3,8,6,1,7,5,4,9},
+                        {6,7,5,3,9,2,8,1,0},
+                        {4,1,0,0,8,5,6,2,3}
+         };
+    }
+    
+    
     public int[][] valmisRatkaisu() {
         return new int[][] {
                         {7,8,3,6,1,4,9,5,2},

@@ -1,6 +1,7 @@
 package cs.helsinki.sudoku.util;
 
 import static cs.helsinki.sudoku.util.GeneraattoriUtil.*;
+import static cs.helsinki.sudoku.util.Util.*;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
@@ -32,7 +33,7 @@ public class SopivatLuvut {
        ArrayList<Integer> luvut = yhdeksanLukua();
        for (int i = 0; i < 9; i++) {
            Integer luku = lauta[rivi][i];
-           if (luku > 0) {
+           if (luku >= 1) {
                luvut.remove(luku);
            }
        }
@@ -44,7 +45,7 @@ public class SopivatLuvut {
        ArrayList<Integer> luvut = yhdeksanLukua();
        for (int i = 0; i < 9; i++) {
            Integer luku = lauta[i][sarake];
-           if (luku > 0) {
+           if (luku >= 1) {
                luvut.remove(luku);
            }
        }
@@ -59,7 +60,7 @@ public class SopivatLuvut {
        for (int i = 0; i < 3; i++) {
            for (int j = 0; j < 3; j++) {
                Integer luku = lauta[osaruudunRivi+i][osaruudunSarake+j];
-               if (luku > 0) {
+               if (luku >= 1) {
                    luvut.remove(luku);
                }
            }

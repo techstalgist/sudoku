@@ -5,6 +5,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import static cs.helsinki.sudoku.util.Util.*;
 
 public class GeneraattoriUtil {
     
@@ -20,14 +21,6 @@ public class GeneraattoriUtil {
        }
        Collections.shuffle(tulos);
        return tulos;
-    }
-       
-    public static ArrayList<Integer> yhdeksanLukua() {
-        ArrayList<Integer> luvut = new ArrayList<>();
-        for(int i = 0; i < 9; i++) {
-            luvut.add(i+1);
-        }
-        return luvut;
     }
     
     public static int[][] kloonaa(int[][] alkup) {

@@ -1,8 +1,18 @@
 
 package cs.helsinki.sudoku.util;
 
+import java.util.ArrayList;
+
 
 public class Util {
+    
+    public static ArrayList<Integer> yhdeksanLukua() {
+        ArrayList<Integer> luvut = new ArrayList<>();
+        for(int i = 0; i < 9; i++) {
+            luvut.add(i+1);
+        }
+        return luvut;
+    }
     
     public static void tulosta(int koko, int[][] tulostettavatRuudut) {
         System.out.println("-----");

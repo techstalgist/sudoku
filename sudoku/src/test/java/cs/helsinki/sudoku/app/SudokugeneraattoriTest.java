@@ -73,6 +73,14 @@ public class SudokugeneraattoriTest {
     }
     
     @Test
+    public void antaaPoikkeavatTiedotJosEiYhtaanSopivaaRuutua() {
+        p.asetaRuudut(u.lautaJollaEiYhtaanSopivaa());
+        ArrayList<Integer> ruutu = p.ruutuJollaVahitenSopivia(p.annaRuudut());
+        ArrayList<Integer> oikeatTiedot = new ArrayList<>(Arrays.asList(0, 0, Integer.MAX_VALUE));
+        assertTrue(oikeatTiedot.equals(ruutu));
+    }
+    
+    @Test
     public void eiTeeVirheitaIsommallaMassallaPelinLuonnissa() {
         int virheellistenLkm = 0;
         int pelienLkm = 0;

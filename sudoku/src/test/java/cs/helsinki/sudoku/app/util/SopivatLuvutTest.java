@@ -5,16 +5,20 @@ import cs.helsinki.sudoku.app.SudokugeneraattoriTestUtil;
 import static cs.helsinki.sudoku.util.SopivatLuvut.*;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
 public class SopivatLuvutTest {
     SudokugeneraattoriTestUtil u;
+    int[][] pohja;
     
     @Before
     public void setUp() {
         u = new SudokugeneraattoriTestUtil();
+        pohja = u.valmisPohja4();
     }
     
     @Test
@@ -29,5 +33,26 @@ public class SopivatLuvutTest {
         assertEquals(eka, tyhjatRuudutJoilleEiSopiviaLukuja.get(0));
         assertEquals(toka, tyhjatRuudutJoilleEiSopiviaLukuja.get(1));
         assertEquals(kolmas, tyhjatRuudutJoilleEiSopiviaLukuja.get(2));
+    }
+    
+    @Test
+    public void laskeeRivinSallitutLuvut() {
+        ArrayList<Integer> sopivat = rivinSallitutLuvut(pohja, 0);
+        ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1));
+        assertTrue(oikeatSopivat.equals(sopivat));
+    }
+    
+    @Test
+    public void laskeeSarakkeenSallitutLuvut() {
+        ArrayList<Integer> sopivat = sarakkeenSallitutLuvut(pohja, 6);
+        ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
+        assertTrue(oikeatSopivat.equals(sopivat));
+    }
+    
+    @Test
+    public void laskeeOsaruudunSallitutLuvut() {
+        ArrayList<Integer> sopivat = osaruudunSallitutLuvut(pohja, 0, 6);
+        ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
+        assertTrue(oikeatSopivat.equals(sopivat));
     }
 }
