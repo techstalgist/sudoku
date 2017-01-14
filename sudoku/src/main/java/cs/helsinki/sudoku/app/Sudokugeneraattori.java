@@ -29,6 +29,10 @@ public class Sudokugeneraattori {
         this.ruutulista = lista;
     }
     
+    public ArrayList<SimpleEntry<Integer,Integer>> annaRuutulista() {
+        return ruutulista;
+    }
+    
      
     public void asetaRatkaisu() {
         this.ratkaisu = this.ruudut;

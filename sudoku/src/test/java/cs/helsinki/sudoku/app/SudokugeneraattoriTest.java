@@ -90,6 +90,14 @@ public class SudokugeneraattoriTest {
         }
         assertEquals(0, virheellistenLkm);
     }
+    
+    @Test
+    public void tyhjentaaLaudan() {
+        p.asetaRuudut(u.valmisPohja4());
+        p.tyhjennaRuudutJaRuutulista();
+        int[][] tyhjaLauta = new int[9][9];
+        assertArrayEquals(tyhjaLauta, p.annaRuudut());
+    }
   
 }
 
