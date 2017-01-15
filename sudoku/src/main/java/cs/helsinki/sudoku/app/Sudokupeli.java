@@ -40,5 +40,9 @@ public class Sudokupeli {
     public void tulostaRatkaisu() {
         tulosta(koko, ratkaisu);
     }
+    
+    public Vaikeusaste annaVaikeusaste() {
+        return vaikeusaste;
+    }
 
 }
