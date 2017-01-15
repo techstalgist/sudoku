@@ -19,3 +19,7 @@ Pelaaja
   * ilmoitus näytetään vasta kun peli on onnistuneesti läpäisty
 - pelin keskeyttäminen
   * mahdollista kun peli on käynnissä
+
+## Luokkakaavio
+
+![Luokkakaavio](luokkakaavio.png)
