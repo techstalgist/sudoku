@@ -12,13 +12,15 @@ public class SudokupeliTest {
     SudokugeneraattoriTestUtil u;
     int[][] lauta;
     int[][] ratkaisu;
+    Vaikeusaste aste;
     
     @Before
     public void setUp() {
         u = new SudokugeneraattoriTestUtil();
         lauta = u.valmisPohja1();
         ratkaisu = u.oikeaTulos1();
-        p = new Sudokupeli(lauta, ratkaisu);
+        aste = Vaikeusaste.KESKITASO;
+        p = new Sudokupeli(lauta, ratkaisu, aste);
     }
     
     @Test
@@ -52,7 +54,7 @@ public class SudokupeliTest {
     @Test
     public void peliValmis() {
         // täyttämisen testi on SudokuGeneraattoriTestissä.
-        Sudokupeli p2 = new Sudokupeli(ratkaisu, ratkaisu);
+        Sudokupeli p2 = new Sudokupeli(ratkaisu, ratkaisu, aste);
         assertTrue(p2.valmis());
     }
 }

@@ -51,7 +51,8 @@ public class SudokugeneraattoriTest {
         p.tayta(p.annaRuudut(),1,0, false, false);
         int[][] alkupRatkaisu = p.annaRuudut();
         p.asetaRuutulista(u.ruutulista());
-        p.tyhjennaRuutujaTaydeltaLaudalta(35);
+        p.asetaVaikeusaste(Vaikeusaste.KESKITASO);
+        p.tyhjennaRuutujaTaydeltaLaudalta();
         p.tayta(p.annaRuudut(),1,0, false, false);
         assertArrayEquals(alkupRatkaisu, p.annaRuudut());
     }
@@ -90,7 +91,8 @@ public class SudokugeneraattoriTest {
             p1.tayta(p1.annaRuudut(), 1,0, true, false);
             p1.asetaRatkaisu();
             int[][] alkupRatkaisu = p1.annaRatkaisu();
-            p1.tyhjennaRuutujaTaydeltaLaudalta(35);
+            p1.asetaVaikeusaste(Vaikeusaste.KESKITASO);
+            p1.tyhjennaRuutujaTaydeltaLaudalta();
             p1.tayta(p1.annaRuudut(), 1,0, false, false);
             if (!u.vertaaRuudukkoja(alkupRatkaisu, p1.annaRuudut())) {
                 virheellistenLkm++;

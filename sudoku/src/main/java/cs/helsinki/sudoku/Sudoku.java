@@ -8,10 +8,7 @@ public class Sudoku {
 
         Sudokugeneraattori generaattori = new Sudokugeneraattori();
         Pelimoottori moottori = new Pelimoottori(generaattori);
-        int tyhjennettavienLkm = 20;
-        moottori.asetaTyhjennettavienLkm(tyhjennettavienLkm);
-        moottori.luoPeli();
-        Sudokupeli peli = moottori.annaPeli();
+        Sudokupeli peli = moottori.uusiPeli(Vaikeusaste.HELPPO);
         peli.tulostaLauta();
 
     }

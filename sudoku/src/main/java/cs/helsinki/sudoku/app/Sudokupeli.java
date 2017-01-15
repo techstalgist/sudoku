@@ -9,11 +9,13 @@ public class Sudokupeli {
     private int koko;
     private int[][] lauta;
     private final int[][] ratkaisu;
+    private Vaikeusaste vaikeusaste;
 
-    public Sudokupeli(int[][] lauta, int[][] ratkaisu) {
+    public Sudokupeli(int[][] lauta, int[][] ratkaisu, Vaikeusaste vaikeusaste) {
         this.koko = 9;
         this.lauta = lauta;
         this.ratkaisu = ratkaisu;
+        this.vaikeusaste = vaikeusaste;
     }
 
     public int[][] annaPelilauta() {

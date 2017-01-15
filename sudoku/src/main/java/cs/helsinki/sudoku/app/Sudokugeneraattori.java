@@ -15,6 +15,7 @@ public class Sudokugeneraattori {
     private int tyhjennettavanRivi;
     private int tyhjennettavanSarake;
     private int tyhjennettavanAlkupArvo;
+    private Vaikeusaste vaikeusaste;
 
     public Sudokugeneraattori() {
         this.koko = 9;
@@ -49,9 +50,13 @@ public class Sudokugeneraattori {
     public int[][] annaRuudut() {
         return ruudut;
     }
+    
+    public void asetaVaikeusaste(Vaikeusaste aste) {
+        this.vaikeusaste = aste;
+    }
 
     public Sudokupeli annaUusiSudokupeli() {
-        return new Sudokupeli(ruudut, ratkaisu);
+        return new Sudokupeli(ruudut, ratkaisu, vaikeusaste);
     }
 
     private void tyhjennaLauta(int[][] lauta) {
@@ -67,7 +72,8 @@ public class Sudokugeneraattori {
         ruutulista.clear();
     }
 
-    public void tyhjennaRuutujaTaydeltaLaudalta(int tyhjienLkm) {
+    public void tyhjennaRuutujaTaydeltaLaudalta() {
+        int tyhjienLkm = vaikeusaste.annaTyhjennettavienLkm();
         if (ruutulista.isEmpty()) {
             ruutulista = annaListaRuutuja();
         }
@@ -177,4 +183,5 @@ public class Sudokugeneraattori {
         return sopivatLuvut;
     }
 
+    
 }

@@ -7,7 +7,6 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,26 +14,25 @@ import org.junit.Test;
 public class PelimoottoriTest {
     Sudokugeneraattori s;
     Pelimoottori m;
-    int tyhjat;
+    Vaikeusaste aste;
     
     @Before
     public void setUp() {
         s = new Sudokugeneraattori();
         m = new Pelimoottori(s);
-        tyhjat = 40;
-        m.asetaTyhjennettavienLkm(tyhjat);
+        aste = Vaikeusaste.KESKITASO;
     }
     
     @Test
     public void luoPelinJossaOikeaMaaraTyhjia() {
-       m.luoPeli();
+       m.uusiPeli(aste);
        int[][] lauta = m.annaPelilauta();
-       assertEquals(tyhjat, tyhjienLkm(lauta));
+       assertEquals(aste.annaTyhjennettavienLkm(), tyhjienLkm(lauta));
     }
     
     @Test
     public void asettaaRatkaisunPeliaLuotaessa() {
-       m.luoPeli();
+       m.uusiPeli(aste);
        int[][] ratkaisu = s.annaRatkaisu();
        assertEquals(9, ratkaisu.length);
        assertEquals(9, ratkaisu[0].length);
@@ -47,7 +45,7 @@ public class PelimoottoriTest {
        s.asetaRuudut(u.valmisPohja1());
        s.asetaRuutulista(u.ruutulista());
        // teoriassa on mahdollista, että generaattori loisi täsmälleen saman pelin, mutta tämä on niin epätodennäköistä, että mahdollisuus sivuutetaan.
-       m.luoPeli(); 
+       m.uusiPeli(aste);
        assertFalse(Arrays.deepEquals(s.annaRuudut(), u.valmisPohja1()));
        // voi arpoa saman ruutulistankin teoriassa
        assertFalse(s.annaRuutulista().equals(u.ruutulista()));
@@ -55,7 +53,7 @@ public class PelimoottoriTest {
     
     @Test
     public void antaaLaudanJossaOikeaRiviJaSarakemaara() {
-       m.luoPeli();
+       m.uusiPeli(aste);
        int[][] lauta = m.annaPelilauta();
        assertEquals(9, lauta.length);
        assertEquals(9, lauta[0].length);
@@ -63,8 +61,7 @@ public class PelimoottoriTest {
     
     @Test
     public void antaaPelin() {
-       m.luoPeli();
-       Sudokupeli p = m.annaPeli();
+       Sudokupeli p = m.uusiPeli(aste);
        assertThat(p, instanceOf(Sudokupeli.class));
     }
 }
