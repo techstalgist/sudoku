@@ -49,6 +49,10 @@ public class Sudokugeneraattori {
     public int[][] annaRuudut() {
         return ruudut;
     }
+    
+    public Sudokupeli annaUusiSudokupeli() {
+        return new Sudokupeli(ruudut, ratkaisu);
+    }
           
     private void tyhjennaLauta(int[][] lauta) {
         for (int i = 0; i < koko; i++) {

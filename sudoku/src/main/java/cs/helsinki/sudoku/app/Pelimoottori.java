@@ -21,7 +21,7 @@ public class Pelimoottori {
         generaattori.tayta(generaattori.annaRuudut(), 1, 0, true, false);
         generaattori.asetaRatkaisu();
         generaattori.tyhjennaRuutujaTaydeltaLaudalta(tyhjennettavienLkm);
-        Sudokupeli uusiPeli = new Sudokupeli(generaattori.annaRuudut(), generaattori.annaRatkaisu());
+        Sudokupeli uusiPeli = generaattori.annaUusiSudokupeli();
         this.peli = uusiPeli;
     }
     
