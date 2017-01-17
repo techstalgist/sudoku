@@ -57,5 +57,11 @@ public class SudokupeliTest {
         Sudokupeli p2 = new Sudokupeli(ratkaisu, ratkaisu, aste);
         assertTrue(p2.valmis());
     }
+    
+    @Test
+    public void antaaVaikeusasteen() {
+        Sudokupeli p2 = new Sudokupeli(ratkaisu, ratkaisu, aste);
+        assertEquals(aste, p2.annaVaikeusaste());
+    }
 }
 

@@ -24,11 +24,7 @@ public class Pelimoottori {
     public int[][] annaPelilauta() {
         return peli.annaPelilauta();
     }
-
-    public Sudokupeli annaPeli() {
-        return peli;
-    }
-
+    
     public void tulostaRatkaisu() {
         peli.tulostaRatkaisu();
     }

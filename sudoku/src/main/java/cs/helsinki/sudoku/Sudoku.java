@@ -10,6 +10,6 @@ public class Sudoku {
         Pelimoottori moottori = new Pelimoottori(generaattori);
         Sudokupeli peli = moottori.uusiPeli(Vaikeusaste.HELPPO);
         peli.tulostaLauta();
-
     }
+   
 }
