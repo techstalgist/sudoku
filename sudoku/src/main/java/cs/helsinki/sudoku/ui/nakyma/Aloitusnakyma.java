@@ -1,6 +1,9 @@
 
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.nakyma;
 
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
+import cs.helsinki.sudoku.ui.kasittelija.VaikeusasteKasittelija;
+import cs.helsinki.sudoku.ui.kasittelija.UusiPeliKasittelija;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Container;

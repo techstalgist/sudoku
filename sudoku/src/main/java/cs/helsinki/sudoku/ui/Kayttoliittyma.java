@@ -1,6 +1,8 @@
 package cs.helsinki.sudoku.ui;
 
+import cs.helsinki.sudoku.ui.nakyma.Nakymanhallinta;
 import cs.helsinki.sudoku.app.Pelimoottori;
+import cs.helsinki.sudoku.app.RuudunStatus;
 import cs.helsinki.sudoku.app.Vaikeusaste;
 
 public class Kayttoliittyma implements Runnable {
@@ -33,10 +35,11 @@ public class Kayttoliittyma implements Runnable {
     
     public void paivitaArvo(int luku, int rivi, int sarake) {
         
-        moottori.paivitaArvoPelilaudalla(luku, rivi, sarake);        
+        RuudunStatus[][] uudetStatukset = moottori.paivitaArvoPelilaudalla(luku, rivi, sarake);
+        nakyma.paivitaPelinaytonVarit(uudetStatukset);
         boolean peliValmis = moottori.peliValmis();
         if (peliValmis) {
             nakyma.naytaValmisIlmoitus();
-        };
+        }
     }
 }

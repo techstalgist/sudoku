@@ -1,5 +1,7 @@
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.nakyma;
 
+import cs.helsinki.sudoku.app.RuudunStatus;
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
@@ -69,5 +71,9 @@ public class Nakymanhallinta {
     
     public void naytaAloitusnaytto() {
         cl.show(panelContainer, "aloitus");
+    }
+
+    public void paivitaPelinaytonVarit(RuudunStatus[][] uudetStatukset) {
+        pelinaytto.paivitaVarit(uudetStatukset);
     }
 }

@@ -1,6 +1,10 @@
 
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.nakyma;
 
+import cs.helsinki.sudoku.app.RuudunStatus;
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
+import cs.helsinki.sudoku.ui.kasittelija.LisaaPoistaSuodatin;
+import cs.helsinki.sudoku.ui.nakyma.Nakyma;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -15,9 +19,7 @@ public class Pelinakyma extends Nakyma {
     
     private JTextField[][] ruudut;
     private int koko;
-    public static final Color TAYTETTAVAN_VARI = Color.YELLOW;
-    public static final Color OIKEAN_VARI = Color.GREEN;
-    public static final Color VAARAN_VARI = Color.RED;
+    
     public static final Font FONTTI = new Font("Monospaced", Font.BOLD, 20);
     
     public Pelinakyma(Kayttoliittyma kali, int koko) {
@@ -42,11 +44,11 @@ public class Pelinakyma extends Nakyma {
                 if (luku > 0) {
                     ruudut[i][j] = new JTextField(luku.toString());
                     ruudut[i][j].setEditable(false);
-
+                    ruudut[i][j].setBackground(RuudunStatus.VALMIIKSI_TAYTETTY.annaVari());
                 } else {
                     ruudut[i][j] = new JTextField("");
                     ruudut[i][j].setEditable(true);
-                    ruudut[i][j].setBackground(TAYTETTAVAN_VARI);
+                    ruudut[i][j].setBackground(RuudunStatus.TAYTETTAVA.annaVari());
                 }
                 ruudut[i][j].setHorizontalAlignment(JTextField.CENTER);
                 ruudut[i][j].setFont(FONTTI);
@@ -79,14 +81,16 @@ public class Pelinakyma extends Nakyma {
     }
      
 
-    public void paivitaVari(JTextField kentta, boolean onSopivaLuku, int luku) {
-        if (luku == 0) {
-            kentta.setBackground(TAYTETTAVAN_VARI);
-        } else if (onSopivaLuku) {
-            kentta.setBackground(OIKEAN_VARI);
-        } else {
-            kentta.setBackground(VAARAN_VARI);
-        }
+    public void paivitaVari(JTextField kentta, RuudunStatus status) {
+        kentta.setBackground(status.annaVari());
     } 
+
+    public void paivitaVarit(RuudunStatus[][] uudetStatukset) {
+        for (int i = 0; i < koko; i++) {
+            for (int j = 0; j < koko; j++) {
+                paivitaVari(ruudut[i][j], uudetStatukset[i][j]);
+            }
+        }
+    }
 
 }

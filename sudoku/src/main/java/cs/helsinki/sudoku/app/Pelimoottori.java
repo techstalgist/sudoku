@@ -21,9 +21,8 @@ public class Pelimoottori {
         return peli;
     }
     
-    public void paivitaArvoPelilaudalla(int luku, int rivi, int sarake) {
-        peli.paivitaArvo(luku, rivi, sarake);
-        // tähän kaikkien ruutujen värien päivitys kutsumalla jotain Nakyman metodia...
+    public RuudunStatus[][] paivitaArvoPelilaudalla(int luku, int rivi, int sarake) {
+        return peli.paivitaArvo(luku, rivi, sarake);
     }
     
     public boolean peliValmis() {

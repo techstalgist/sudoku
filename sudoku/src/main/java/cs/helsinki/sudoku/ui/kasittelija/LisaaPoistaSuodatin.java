@@ -1,5 +1,6 @@
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.kasittelija;
 
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import javax.swing.JTextField;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;

@@ -1,5 +1,6 @@
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.kasittelija;
 
+import cs.helsinki.sudoku.ui.nakyma.Nakymanhallinta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

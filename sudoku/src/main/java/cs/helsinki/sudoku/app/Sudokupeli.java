@@ -8,7 +8,7 @@ public class Sudokupeli {
 
     private int koko;
     private int[][] lauta;
-    private int[][] ruutujenStatukset;
+    private RuudunStatus[][] ruutujenStatukset;
     private final int[][] ratkaisu;
     private Vaikeusaste vaikeusaste;
 
@@ -24,12 +24,12 @@ public class Sudokupeli {
         return lauta;
     }
 
-    public int[][] paivitaArvo(int arvo, int i, int j) {
+    public RuudunStatus[][] paivitaArvo(int arvo, int i, int j) {
         // tarkistus tehtävä ennen kuin arvo muuttuu laudalla
         boolean onSopivaLuku = annettuLukuOnSopivaLuku(arvo, lauta, i, j);
         lauta[i][j] = arvo;
         // miten tämä suhtautuu edelliseen kommenttiin???
-        return paivitaRuutujenStatukset();
+        return paivitaRuutujenStatukset(i, j, onSopivaLuku);
     }
 
     public boolean valmis() {
@@ -48,29 +48,43 @@ public class Sudokupeli {
         return vaikeusaste;
     }
 
-    private int[][] alustaRuutujenStatukset() {
-        int[][] statukset = new int[koko][koko];
+    private RuudunStatus[][] alustaRuutujenStatukset() {
+        RuudunStatus[][] statukset = new RuudunStatus[koko][koko];
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
                 if (lauta[i][j] > 0) {
-                    statukset[i][j] = 1;
+                    statukset[i][j] = RuudunStatus.VALMIIKSI_TAYTETTY;
+                } else {
+                    statukset[i][j] = RuudunStatus.TAYTETTAVA;
                 }
             }
         }
         return statukset;
     }
 
-    private int[][] paivitaRuutujenStatukset() {
+    private RuudunStatus[][] paivitaRuutujenStatukset(int taytetynRivi, int taytetynSarake, boolean onSopivaLuku) {
         
         for (int i = 0; i < koko; i++) {
             for (int j = 0; j < koko; j++) {
-                int arvo = lauta[i][j];
-                if (arvo > 0) {
-                  if (annettuLukuOnSopivaLuku(arvo, lauta, i, j)) {
-                      ruutujenStatukset[i][j] = 2;
-                  } else {
-                      ruutujenStatukset[i][j] = 3;
+                RuudunStatus status = ruutujenStatukset[i][j];
+                
+                if (status != RuudunStatus.VALMIIKSI_TAYTETTY) {
+                  int arvo = lauta[i][j];
+                  if (arvo == 0) {
+                      ruutujenStatukset[i][j] = RuudunStatus.TAYTETTAVA;
+                      continue;
                   }
+                  if (i == taytetynRivi && j == taytetynSarake) {
+                      ruutujenStatukset[i][j] = onSopivaLuku ? RuudunStatus.OIKEIN_TAYTETTY : RuudunStatus.VAARIN_TAYTETTY;
+                      continue;
+                  }
+                  /* TODO tähän joku logiikka aiemmin syötettyjen arvojen tarkistamiseksi.
+                  pitää laskea sopivat luvut joka ruudulle olettaen että ruutu olisi tyhjä.
+                  if (annettuLukuOnSopivaLuku(arvo, lauta, i, j)) {
+                      ruutujenStatukset[i][j] = RuudunStatus.OIKEIN_TAYTETTY;
+                  } else {
+                      ruutujenStatukset[i][j] = RuudunStatus.VAARIN_TAYTETTY;
+                  }*/
                 }                
             }
         }

@@ -1,6 +1,7 @@
 
-package cs.helsinki.sudoku.ui;
+package cs.helsinki.sudoku.ui.nakyma;
 
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import javax.swing.JPanel;
 
 
