@@ -1,6 +1,8 @@
 package cs.helsinki.sudoku;
 
 import cs.helsinki.sudoku.app.*;
+import cs.helsinki.sudoku.ui.Kayttoliittyma;
+import javax.swing.SwingUtilities;
 
 public class Sudoku {
 
@@ -8,8 +10,7 @@ public class Sudoku {
 
         Sudokugeneraattori generaattori = new Sudokugeneraattori();
         Pelimoottori moottori = new Pelimoottori(generaattori);
-        Sudokupeli peli = moottori.uusiPeli(Vaikeusaste.HELPPO);
-        peli.tulostaLauta();
+        SwingUtilities.invokeLater(new Kayttoliittyma(moottori));
     }
    
 }
