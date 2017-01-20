@@ -1,11 +1,9 @@
-
 package cs.helsinki.sudoku.ui.nakyma;
 
 import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import cs.helsinki.sudoku.ui.kasittelija.VaikeusasteKasittelija;
 import cs.helsinki.sudoku.ui.kasittelija.UusiPeliKasittelija;
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import javax.swing.ButtonGroup;
@@ -14,16 +12,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-
 public class Aloitusnakyma extends Nakyma {
-    
-    private Nakymanhallinta nakyma;
-    
+
     public Aloitusnakyma(Kayttoliittyma kali, Nakymanhallinta nakyma) {
-        super(kali);
-        this.nakyma = nakyma;
+        super(kali, nakyma);
     }
-    
+
     @Override
     public void tayta() {
         sisalto.setLayout(new BorderLayout());
@@ -37,7 +31,7 @@ public class Aloitusnakyma extends Nakyma {
         lisaaPainikkeet(content);
 
         JButton uusiPeli = new JButton("Aloita peli");
-        UusiPeliKasittelija kasittelija = new UusiPeliKasittelija(nakyma, kali);
+        UusiPeliKasittelija kasittelija = new UusiPeliKasittelija(hallinta, kali);
         uusiPeli.addActionListener(kasittelija);
 
         JPanel tyhjaa = new JPanel();
@@ -47,7 +41,7 @@ public class Aloitusnakyma extends Nakyma {
         sisalto.add(content, BorderLayout.CENTER);
         sisalto.add(uusiPeli, BorderLayout.SOUTH);
     }
-    
+
     private void lisaaPainikkeet(Container content) {
         JLabel otsikko = new JLabel("Vaikeusaste:");
         ButtonGroup painikkeet = new ButtonGroup();

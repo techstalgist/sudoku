@@ -33,7 +33,7 @@ public class Nakymanhallinta {
     private void luoKomponentit() {
         panelContainer = new JPanel();
         aloitus = new Aloitusnakyma(kali, this);
-        pelinaytto = new Pelinakyma(kali, 9);
+        pelinaytto = new Pelinakyma(kali, this, 9);
         cl = new CardLayout();
         panelContainer.setLayout(cl);
 

@@ -3,6 +3,7 @@ package cs.helsinki.sudoku.ui.nakyma;
 
 import cs.helsinki.sudoku.app.RuudunStatus;
 import cs.helsinki.sudoku.ui.Kayttoliittyma;
+import cs.helsinki.sudoku.ui.kasittelija.AloitusKasittelija;
 import cs.helsinki.sudoku.ui.kasittelija.LisaaPoistaSuodatin;
 import cs.helsinki.sudoku.ui.nakyma.Nakyma;
 import java.awt.BorderLayout;
@@ -10,6 +11,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.BorderFactory;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.PlainDocument;
@@ -22,8 +24,8 @@ public class Pelinakyma extends Nakyma {
     
     public static final Font FONTTI = new Font("Monospaced", Font.BOLD, 20);
     
-    public Pelinakyma(Kayttoliittyma kali, int koko) {
-        super(kali);
+    public Pelinakyma(Kayttoliittyma kali, Nakymanhallinta hallinta, int koko) {
+        super(kali, hallinta);
         this.koko = koko;
         this.ruudut = new JTextField[koko][koko];
     }
@@ -59,6 +61,9 @@ public class Pelinakyma extends Nakyma {
                 peli.add(ruudut[i][j]);
             }
         }
+        JButton aloitus = new JButton("Keskeytä peli");
+        aloitus.addActionListener(new AloitusKasittelija(hallinta));
+        sisalto.add(aloitus, BorderLayout.SOUTH);
     }
     private void merkkaaReunat(int i, int j) {
         int top, bottom, left, right;

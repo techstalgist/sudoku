@@ -78,13 +78,11 @@ public class Sudokupeli {
                       ruutujenStatukset[i][j] = onSopivaLuku ? RuudunStatus.OIKEIN_TAYTETTY : RuudunStatus.VAARIN_TAYTETTY;
                       continue;
                   }
-                  /* TODO tähän joku logiikka aiemmin syötettyjen arvojen tarkistamiseksi.
-                  pitää laskea sopivat luvut joka ruudulle olettaen että ruutu olisi tyhjä.
-                  if (annettuLukuOnSopivaLuku(arvo, lauta, i, j)) {
+                  // ilmeisesti oikein täytetty ruutu ei voi muuttua väärin täytetyksi, koska tässä tilanteessa syötetty luku on väärin täytetty.
+                  // sen sijaan väärin täytetty voi muuttua oikein täytetyksi, jos jonkun ruudun tyhjentää
+                  if (ruutujenStatukset[i][j] == RuudunStatus.VAARIN_TAYTETTY && ruudunLukuOnSopivaLuku(lauta, i, j)) {
                       ruutujenStatukset[i][j] = RuudunStatus.OIKEIN_TAYTETTY;
-                  } else {
-                      ruutujenStatukset[i][j] = RuudunStatus.VAARIN_TAYTETTY;
-                  }*/
+                  }
                 }                
             }
         }

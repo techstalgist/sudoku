@@ -9,10 +9,12 @@ public abstract class Nakyma {
     
     protected JPanel sisalto;
     protected Kayttoliittyma kali;
+    protected Nakymanhallinta hallinta;
     
-    public Nakyma(Kayttoliittyma kali) {
+    public Nakyma(Kayttoliittyma kali, Nakymanhallinta hallinta) {
         this.sisalto = new JPanel();
         this.kali = kali;
+        this.hallinta = hallinta;
     }
     
     public JPanel annaSisalto() {

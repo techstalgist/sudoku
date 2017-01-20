@@ -28,6 +28,13 @@ public class SopivatLuvut {
 
         return sopivatLuvut.contains((Integer) luku);
     }
+    
+    public static boolean ruudunLukuOnSopivaLuku(int[][] lauta, int rivi, int sarake) {
+        Integer alkupLuku = lauta[rivi][sarake];
+        int[][] kloonattuLauta = kloonaa(lauta);
+        kloonattuLauta[rivi][sarake] = 0;
+        return laskeSopivatLuvut(kloonattuLauta, rivi, sarake).contains(alkupLuku);
+    }
 
     public static ArrayList<Integer> rivinSallitutLuvut(int[][] lauta, int rivi) {
         ArrayList<Integer> luvut = yhdeksanLukua();
