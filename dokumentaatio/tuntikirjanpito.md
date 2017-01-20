@@ -7,3 +7,4 @@ Päivä | Tunnit | Kuvaus
 15.01.2017 | 1,5h | Luokkakaavio, Checkstyle
 17.01.2017 | 5h | UI koodausta
 18.01.2017 | 2h | UI koodausta
+20.01.2017 | 1h | UI ja logiikkakoodausta
