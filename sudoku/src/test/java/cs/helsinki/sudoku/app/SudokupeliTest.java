@@ -33,7 +33,8 @@ public class SudokupeliTest {
         int oikeaArvo = 4;
         int rivi = 0;
         int sarake = 0;
-        assertTrue(p.paivitaArvo(oikeaArvo, rivi, sarake));
+        RuudunStatus[][] statukset = p.paivitaArvo(oikeaArvo, rivi, sarake);
+        assertEquals(RuudunStatus.OIKEIN_TAYTETTY, statukset[rivi][sarake]);
         assertEquals(oikeaArvo,p.annaPelilauta()[rivi][sarake]);
     }
     
@@ -42,7 +43,8 @@ public class SudokupeliTest {
         int oikeaArvo = 9;
         int rivi = 0;
         int sarake = 0;
-        assertFalse(p.paivitaArvo(oikeaArvo, rivi, sarake));
+        RuudunStatus[][] statukset = p.paivitaArvo(oikeaArvo, rivi, sarake);
+        assertEquals(RuudunStatus.VAARIN_TAYTETTY, statukset[rivi][sarake]);
         assertEquals(oikeaArvo,p.annaPelilauta()[rivi][sarake]);
     }
     

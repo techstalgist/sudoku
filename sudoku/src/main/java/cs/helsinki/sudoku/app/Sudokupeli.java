@@ -25,10 +25,10 @@ public class Sudokupeli {
     }
 
     public RuudunStatus[][] paivitaArvo(int arvo, int i, int j) {
-        // tarkistus tehtävä ennen kuin arvo muuttuu laudalla
+        
         boolean onSopivaLuku = annettuLukuOnSopivaLuku(arvo, lauta, i, j);
         lauta[i][j] = arvo;
-        // miten tämä suhtautuu edelliseen kommenttiin???
+        
         return paivitaRuutujenStatukset(i, j, onSopivaLuku);
     }
 
