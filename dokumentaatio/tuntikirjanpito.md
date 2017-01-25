@@ -8,3 +8,4 @@ Päivä | Tunnit | Kuvaus
 17.01.2017 | 5h | UI koodausta
 18.01.2017 | 2h | UI koodausta
 20.01.2017 | 1h | UI ja logiikkakoodausta
+25.01.2017 | 1h | testejä, kaavioiden ja raporttien päivittämistä

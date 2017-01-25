@@ -7,6 +7,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -28,6 +29,12 @@ public class PelimoottoriTest {
        m.uusiPeli(aste);
        int[][] lauta = m.annaPelilauta();
        assertEquals(aste.annaTyhjennettavienLkm(), tyhjienLkm(lauta));
+    }
+    
+    @Test
+    public void peliKesken() {
+       m.uusiPeli(aste);
+       assertFalse(m.peliValmis());
     }
     
     @Test
@@ -63,5 +70,26 @@ public class PelimoottoriTest {
     public void antaaPelin() {
        Sudokupeli p = m.uusiPeli(aste);
        assertThat(p, instanceOf(Sudokupeli.class));
+    }
+    
+    @Test
+    public void paivittaaArvonLaudalla() {
+       Sudokupeli p = m.uusiPeli(aste);
+       int[][] lauta = m.annaPelilauta();
+       int rivi = 0;
+       int sarake = 0;
+       RuudunStatus[][] statukset = new RuudunStatus[9][9];
+       for (int i = 0; i < 9; i++) {
+           for(int j = 0; j < 9; j++) {
+               if (lauta[i][j]==0) {
+                   statukset = m.paivitaArvoPelilaudalla(3, i, j);
+                   rivi = i;
+                   sarake = j;
+                   break;
+               }
+           }
+       }
+       assertEquals(3, m.annaPelilauta()[rivi][sarake]);
+       assertTrue(statukset[0][0] != null);
     }
 }

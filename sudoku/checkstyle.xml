@@ -73,6 +73,9 @@
         </module>
 
     </module>
+    <module name="SuppressionFilter">
+        <property name="file" value="mysuppressions.xml" />
+    </module>
 
     <!-- File Length -->
 

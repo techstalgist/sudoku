@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 8,
+      <title>File: 18,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,133 @@ under the License.
           <tbody>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.VaikeusasteKasittelija.java">cs/helsinki/sudoku/ui/kasittelija/VaikeusasteKasittelija.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.LisaaPoistaSuodatin.java">cs/helsinki/sudoku/ui/kasittelija/LisaaPoistaSuodatin.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.Kayttoliittyma.java">cs/helsinki/sudoku/ui/Kayttoliittyma.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.nakyma.Nakymanhallinta.java">cs/helsinki/sudoku/ui/nakyma/Nakymanhallinta.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Sudokupeli.java">cs/helsinki/sudoku/app/Sudokupeli.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.nakyma.Aloitusnakyma.java">cs/helsinki/sudoku/ui/nakyma/Aloitusnakyma.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Vaikeusaste.java">cs/helsinki/sudoku/app/Vaikeusaste.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.util.Util.java">cs/helsinki/sudoku/util/Util.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.Sudoku.java">cs/helsinki/sudoku/Sudoku.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.nakyma.Pelinakyma.java">cs/helsinki/sudoku/ui/nakyma/Pelinakyma.java</a>
                 </td>
                 <td>
                   0
@@ -74,7 +200,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Pelimoottori.java">cs/helsinki/sudoku/app/Pelimoottori.java</a>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.nakyma.Nakyma.java">cs/helsinki/sudoku/ui/nakyma/Nakyma.java</a>
                 </td>
                 <td>
                   0
@@ -88,7 +214,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Sudokupeli.java">cs/helsinki/sudoku/app/Sudokupeli.java</a>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Pelimoottori.java">cs/helsinki/sudoku/app/Pelimoottori.java</a>
                 </td>
                 <td>
                   0
@@ -130,7 +256,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Vaikeusaste.java">cs/helsinki/sudoku/app/Vaikeusaste.java</a>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.RuudunStatus.java">cs/helsinki/sudoku/app/RuudunStatus.java</a>
                 </td>
                 <td>
                   0
@@ -144,7 +270,21 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.util.Util.java">cs/helsinki/sudoku/util/Util.java</a>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.UusiPeliKasittelija.java">cs/helsinki/sudoku/ui/kasittelija/UusiPeliKasittelija.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.AloitusKasittelija.java">cs/helsinki/sudoku/ui/kasittelija/AloitusKasittelija.java</a>
                 </td>
                 <td>
                   0
