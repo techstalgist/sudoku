@@ -47,7 +47,7 @@ public class Nakymanhallinta {
     } 
     
     public void naytaValmisIlmoitus() {
-
+        keskeytaAjastinPelinaytolla();
         String[] painikkeet = {"Lopeta", "Uusi peli"};
         int vastaus = JOptionPane.showOptionDialog(frame, "Täytit Sudokun oikein. Onneksi olkoon!\nVoit joko aloittaa uuden pelin tai lopettaa sovelluksen.",
                 "Sudoku täytetty oikein!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, painikkeet,
@@ -75,5 +75,26 @@ public class Nakymanhallinta {
 
     public void paivitaPelinaytonVarit(RuudunStatus[][] uudetStatukset) {
         pelinaytto.paivitaVarit(uudetStatukset);
+    }
+
+    public void kaynnistaAjastinPelinaytolla() {
+        pelinaytto.kaynnistaAjastin(kali.annaVaikeusaste());
+    }
+    
+    public void keskeytaAjastinPelinaytolla() {
+        pelinaytto.keskeytaAjastin();
+    }
+
+    public void naytaAikaLoppuiIlmoitus() {
+        String[] painikkeet = {"Lopeta", "Uusi peli"};
+        int vastaus = JOptionPane.showOptionDialog(frame, "Et saanut täytettyä Sudokua määräajassa. Voit joko aloittaa uuden pelin tai lopettaa sovelluksen.",
+                "Aika loppui kesken", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, painikkeet,
+                painikkeet[0]);
+
+        if (vastaus == 1) {
+            naytaAloitusnaytto();
+        } else {
+            System.exit(0);
+        }
     }
 }

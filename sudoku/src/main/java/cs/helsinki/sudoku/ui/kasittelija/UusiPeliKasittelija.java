@@ -21,6 +21,7 @@ public class UusiPeliKasittelija implements ActionListener {
         ui.pyydaUusiPeli();
         nakyma.taytaPelinaytto();
         nakyma.naytaPelinaytto();
+        nakyma.kaynnistaAjastinPelinaytolla();
 
     }
 

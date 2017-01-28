@@ -24,8 +24,15 @@ public class Kayttoliittyma implements Runnable {
     public void asetaVaikeusaste(Vaikeusaste aste) {
         this.aste = aste;
     }
+    
+    public Vaikeusaste annaVaikeusaste() {
+        return aste;
+    }
 
     public void pyydaUusiPeli() {
+        if (aste == null) {
+            aste = Vaikeusaste.HELPPO;
+        }
         moottori.uusiPeli(aste);
     }
 
@@ -40,6 +47,13 @@ public class Kayttoliittyma implements Runnable {
         boolean peliValmis = moottori.peliValmis();
         if (peliValmis) {
             nakyma.naytaValmisIlmoitus();
+        }
+    }
+
+    public void tarkistaPelitilanneAjanLoppuessa() {
+        boolean peliValmis = moottori.peliValmis();
+        if (!peliValmis) {
+            nakyma.naytaAikaLoppuiIlmoitus();
         }
     }
 }

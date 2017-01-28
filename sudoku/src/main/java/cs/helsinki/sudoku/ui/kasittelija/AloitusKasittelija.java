@@ -16,6 +16,7 @@ public class AloitusKasittelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         nakyma.naytaAloitusnaytto();
+        nakyma.keskeytaAjastinPelinaytolla();
     }
 
 }

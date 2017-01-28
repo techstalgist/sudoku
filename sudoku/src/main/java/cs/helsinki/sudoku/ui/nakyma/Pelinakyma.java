@@ -2,16 +2,23 @@
 package cs.helsinki.sudoku.ui.nakyma;
 
 import cs.helsinki.sudoku.app.RuudunStatus;
+import cs.helsinki.sudoku.app.Vaikeusaste;
+import cs.helsinki.sudoku.ui.Ajastin;
 import cs.helsinki.sudoku.ui.Kayttoliittyma;
+import cs.helsinki.sudoku.ui.Kello;
 import cs.helsinki.sudoku.ui.kasittelija.AloitusKasittelija;
 import cs.helsinki.sudoku.ui.kasittelija.LisaaPoistaSuodatin;
-import cs.helsinki.sudoku.ui.nakyma.Nakyma;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.PlainDocument;
@@ -21,13 +28,16 @@ public class Pelinakyma extends Nakyma {
     
     private JTextField[][] ruudut;
     private int koko;
+    private Ajastin ajastin;
     
     public static final Font FONTTI = new Font("Monospaced", Font.BOLD, 20);
+    private final Kello kello;
     
     public Pelinakyma(Kayttoliittyma kali, Nakymanhallinta hallinta, int koko) {
         super(kali, hallinta);
         this.koko = koko;
         this.ruudut = new JTextField[koko][koko];
+        this.kello = new Kello(kali);
     }
     
     @Override
@@ -61,10 +71,24 @@ public class Pelinakyma extends Nakyma {
                 peli.add(ruudut[i][j]);
             }
         }
+        lisaaAlapalkki();
+    }
+    
+    private void lisaaAlapalkki() {
+        JPanel alapalkki = new JPanel();
+        alapalkki.setLayout(new FlowLayout(FlowLayout.TRAILING));
         JButton aloitus = new JButton("Keskeytä peli");
         aloitus.addActionListener(new AloitusKasittelija(hallinta));
-        sisalto.add(aloitus, BorderLayout.SOUTH);
+        
+        JLabel teksti = new JLabel("Aikaa jäljellä: ");
+                
+        alapalkki.add(aloitus);
+        alapalkki.add(teksti);
+        alapalkki.add(kello.annaSisalto());
+        
+        sisalto.add(alapalkki, BorderLayout.SOUTH);
     }
+    
     private void merkkaaReunat(int i, int j) {
         int top, bottom, left, right;
         top = bottom = left = right = 1;
@@ -96,6 +120,21 @@ public class Pelinakyma extends Nakyma {
                 paivitaVari(ruudut[i][j], uudetStatukset[i][j]);
             }
         }
+    }
+
+    public void kaynnistaAjastin(Vaikeusaste aste) {
+        int halututMinuutit = aste.annaMinuutit();
+        int halututSekunnit = aste.annaSekunnit();
+        // pitää lisätä yksi, koska muuten laskuri alkaisi kohdasta halututSekunnit - 1.
+        long loppumisaika = System.currentTimeMillis() + 1000*(halututMinuutit*60+halututSekunnit+1);
+        final ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
+        this.ajastin = new Ajastin(loppumisaika, ses, kello);
+        
+        ajastin.runUntil(ses, 1, TimeUnit.SECONDS);
+    }
+
+    public void keskeytaAjastin() {
+        ajastin.keskeyta();
     }
 
 }
