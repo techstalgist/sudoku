@@ -48,6 +48,10 @@ public class Sudokupeli {
         return vaikeusaste;
     }
 
+    public RuudunStatus[][] annaStatukset() {
+        return ruutujenStatukset;
+    }
+
     private RuudunStatus[][] alustaRuutujenStatukset() {
         RuudunStatus[][] statukset = new RuudunStatus[koko][koko];
         for (int i = 0; i < koko; i++) {
