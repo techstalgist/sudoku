@@ -2,6 +2,10 @@ package cs.helsinki.sudoku.util;
 
 import java.util.ArrayList;
 
+/**
+ * Yleisiä apumetodeja.
+ */
+
 public class Util {
 
     public static ArrayList<Integer> yhdeksanLukua() {

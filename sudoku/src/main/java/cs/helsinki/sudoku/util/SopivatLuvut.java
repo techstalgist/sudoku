@@ -5,6 +5,10 @@ import static cs.helsinki.sudoku.util.Util.*;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 
+/**
+ * Luokka laskee Sudoku-pelin sääntöjen mukaisia sopivia lukuja / pelilaudan ruutuja annetulle pelilaudalle.
+ */
+
 public class SopivatLuvut {
 
     public static ArrayList<Integer> laskeSopivatLuvut(int[][] lauta, int rivi, int sarake) {

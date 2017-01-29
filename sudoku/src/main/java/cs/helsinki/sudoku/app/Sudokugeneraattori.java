@@ -6,6 +6,11 @@ import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Luokkaa käyttäen generoidaan uusi Sudoku-peli täyttämällä tyhjä lauta satunnaisilla Sudoku-pelin säännöt täyttävillä luvuilla, 
+ * ja tyhjentämällä haluttu määrä ruutuja valmiiksi täytetyltä laudalta.
+ */
+
 public class Sudokugeneraattori {
 
     private int koko;

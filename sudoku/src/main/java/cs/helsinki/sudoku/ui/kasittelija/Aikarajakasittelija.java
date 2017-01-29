@@ -5,6 +5,9 @@ import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
+/**
+ * Käsittelee Käytä aikarajaa -checkboxin täppäämisen päälle tai pois päältä.
+ */
 
 public class Aikarajakasittelija implements ItemListener {
 

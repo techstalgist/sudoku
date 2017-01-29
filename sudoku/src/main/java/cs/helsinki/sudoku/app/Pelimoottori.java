@@ -1,5 +1,10 @@
 package cs.helsinki.sudoku.app;
 
+/**
+ * Luokka käyttää Sudokugeneraattoria uuden Sudokupelin luontiin ja palauttaa uuden pelin käyttöliittymälle.
+ * Luokka kutsuu myös Sudokupelin metodia pelilaudan arvon päivittämiseksi.
+ */
+
 public class Pelimoottori {
 
     private Sudokugeneraattori generaattori;

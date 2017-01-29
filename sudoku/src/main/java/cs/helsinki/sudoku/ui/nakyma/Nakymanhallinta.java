@@ -9,6 +9,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+/**
+ * Luokka vastaa näkymien luonnista, näytettävän näkymän vaihtamisesta, sekä Valmis- ja Aika loppui- ilmoitusten näyttämisestä.
+ */
+
 public class Nakymanhallinta {
 
     private Kayttoliittyma kali;

@@ -6,6 +6,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import static cs.helsinki.sudoku.util.Util.*;
 
+/**
+ * Sudokugeneraattorin tarvitsemia apumetodeja.
+ */
+
 public class GeneraattoriUtil {
 
     public static ArrayList<AbstractMap.SimpleEntry<Integer, Integer>> annaListaRuutuja() {

@@ -5,6 +5,10 @@ import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Käsittelee vaikeusasteen muuttamisen aloitusnäytöllä.
+ */
+
 public class VaikeusasteKasittelija implements ActionListener {
 
     private Kayttoliittyma ui;

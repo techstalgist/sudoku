@@ -7,6 +7,11 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.Document;
 import javax.swing.text.DocumentFilter;
 
+/**
+ *  Luokka saa syötteenä käyttäjän Sudoku-pelilaudalle syöttämän arvon. 
+ * Validoi syötteen ja kutsuu käyttöliittymän arvon päivittämisen metodia.
+ */
+
 public class LisaaPoistaSuodatin extends DocumentFilter {
 
     private Kayttoliittyma ui;

@@ -8,6 +8,10 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+/**
+ * Käyttöliittymäkomponentti, joka näyttää annetut sekunnit minuutteina ja sekunteina kellonäyttönä.
+ */
+
 
 public class Kellonaytto {
     JLabel label;

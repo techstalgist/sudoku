@@ -4,6 +4,9 @@ import cs.helsinki.sudoku.ui.nakyma.Nakymanhallinta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Käsittelee Uusi peli-painikkeen painamisen.
+ */
 
 public class UusiPeliKasittelija implements ActionListener {
 

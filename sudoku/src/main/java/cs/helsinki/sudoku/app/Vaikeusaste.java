@@ -1,5 +1,9 @@
 package cs.helsinki.sudoku.app;
 
+/**
+ * Mahdolliset Sudoku-pelin vaikeusasteet, tyhjennettävien ruutujen lkm:t sekä aikarajat.
+ */
+
 public enum Vaikeusaste {
     HELPPO(25, 3, 0),
     KESKITASO(40, 10, 0),

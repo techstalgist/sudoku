@@ -5,6 +5,10 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 import static java.lang.Math.toIntExact;
 
+/**
+ * Ajastin joka suorittaa halutun käskyn sekunnin välein tiettyyn päättymisaikaan asti.
+ */
+
 public class Ajastin implements Runnable {
 
     private volatile ScheduledFuture<?> self;

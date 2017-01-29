@@ -22,6 +22,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.text.PlainDocument;
 
+/**
+ * Luokka piirtää Sudoku-pelilaudan ja hallinnoi ajastinta jos se on käytössä.
+ */
+
 public class Pelinakyma extends Nakyma {
 
     private JTextField[][] ruudut;

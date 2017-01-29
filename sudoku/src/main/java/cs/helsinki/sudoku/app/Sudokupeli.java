@@ -4,6 +4,11 @@ import static cs.helsinki.sudoku.util.SopivatLuvut.*;
 import static cs.helsinki.sudoku.util.Util.tulosta;
 import java.util.Arrays;
 
+/**
+ * Luokkaa käyttäen luodaan yksi Sudokupeli annetulla valmiilla pelilaudalla ja sen ratkaisulla.
+ * Luokkaa käytetään pelilaudan arvon päivittämiseen. Luokka pitää myös kirjaa jokaisen pelilaudan ruudun tilasta.
+ */
+
 public class Sudokupeli {
 
     private int koko;

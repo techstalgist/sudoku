@@ -4,6 +4,10 @@ import cs.helsinki.sudoku.app.*;
 import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import javax.swing.SwingUtilities;
 
+/**
+ * Sudoku-sovelluksen Main-luokka. Luo Sudokugeneraattorin, pelimoottorin ja käynnistää käyttöliittymän
+ */
+
 public class Sudoku {
 
     public static void main(String[] args) {

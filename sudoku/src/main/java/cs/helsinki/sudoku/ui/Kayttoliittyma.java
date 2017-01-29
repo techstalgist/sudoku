@@ -5,6 +5,10 @@ import cs.helsinki.sudoku.app.Pelimoottori;
 import cs.helsinki.sudoku.app.RuudunStatus;
 import cs.helsinki.sudoku.app.Vaikeusaste;
 
+/**
+ * Käyttöliittymää hallinnoiva luokka. Tarjoaa tapahtumakäsittelijöille rajapinnan pelimoottorin kutsuille.
+ */
+
 public class Kayttoliittyma implements Runnable {
 
     private Pelimoottori moottori;

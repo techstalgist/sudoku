@@ -4,6 +4,9 @@ import cs.helsinki.sudoku.ui.nakyma.Nakymanhallinta;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Käsittelee pelin keskeytyksen pelinäytöllä.
+ */
 
 public class AloitusKasittelija implements ActionListener {
 

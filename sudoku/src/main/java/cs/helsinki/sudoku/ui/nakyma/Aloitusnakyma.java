@@ -14,6 +14,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
+/**
+ * Luokka piirtää aloitusnäkymän käyttöliittymäkomponentit.
+ */
+
 public class Aloitusnakyma extends Nakyma {
 
     public Aloitusnakyma(Kayttoliittyma kali, Nakymanhallinta nakyma) {

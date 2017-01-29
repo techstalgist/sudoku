@@ -3,9 +3,9 @@ package cs.helsinki.sudoku.app;
 import java.awt.Color;
 
 /**
- *
- * @author mikkoruuskanen
+ * Mahdolliset Sudoku-pelin ruudun tilat, sekä väri joka tilalle.
  */
+
 public enum RuudunStatus {
     TAYTETTAVA(Color.YELLOW),
     VALMIIKSI_TAYTETTY(Color.WHITE),
