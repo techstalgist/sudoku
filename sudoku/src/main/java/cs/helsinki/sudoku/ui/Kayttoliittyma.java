@@ -15,6 +15,7 @@ public class Kayttoliittyma implements Runnable {
     public Kayttoliittyma(Pelimoottori moottori) {
         this.moottori = moottori;
         this.hallinta = new Nakymanhallinta(this);
+        this.kaytaAikarajaa = false;
     }
 
     @Override
