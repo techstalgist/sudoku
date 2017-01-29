@@ -2,8 +2,8 @@ package cs.helsinki.sudoku.app;
 
 public enum Vaikeusaste {
     HELPPO(25, 3, 0),
-    KESKITASO(35, 10, 0),
-    VAIKEA(50, 25, 0);
+    KESKITASO(40, 10, 0),
+    VAIKEA(55, 25, 0);
 
     private final int tyhjennettavienLkm;
     private final int minuutit;

@@ -10,17 +10,18 @@ import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
 public class Nakymanhallinta {
+
     private Kayttoliittyma kali;
     private JFrame frame;
     private JPanel panelContainer;
     private CardLayout cl;
     private Aloitusnakyma aloitus;
     private Pelinakyma pelinaytto;
-    
+
     public Nakymanhallinta(Kayttoliittyma kali) {
         this.kali = kali;
     }
-    
+
     public void init() {
         frame = new JFrame("Sudoku");
         frame.setPreferredSize(new Dimension(600, 600));
@@ -29,7 +30,7 @@ public class Nakymanhallinta {
         frame.pack();
         frame.setVisible(true);
     }
-    
+
     private void luoKomponentit() {
         panelContainer = new JPanel();
         aloitus = new Aloitusnakyma(kali, this);
@@ -44,8 +45,8 @@ public class Nakymanhallinta {
 
         cl.show(panelContainer, "aloitus");
         frame.add(panelContainer);
-    } 
-    
+    }
+
     public void naytaValmisIlmoitus() {
         keskeytaAjastinPelinaytolla();
         String[] painikkeet = {"Lopeta", "Uusi peli"};
@@ -64,11 +65,11 @@ public class Nakymanhallinta {
     public void naytaPelinaytto() {
         cl.show(panelContainer, "peli");
     }
-    
+
     public void taytaPelinaytto() {
         pelinaytto.tayta();
     }
-    
+
     public void naytaAloitusnaytto() {
         cl.show(panelContainer, "aloitus");
     }
@@ -78,11 +79,15 @@ public class Nakymanhallinta {
     }
 
     public void kaynnistaAjastinPelinaytolla() {
-        pelinaytto.kaynnistaAjastin(kali.annaVaikeusaste());
+        if (kali.kaytaAikarajaa()) {
+            pelinaytto.kaynnistaAjastin(kali.annaVaikeusaste());
+        }
     }
-    
+
     public void keskeytaAjastinPelinaytolla() {
-        pelinaytto.keskeytaAjastin();
+        if (kali.kaytaAikarajaa()) {
+            pelinaytto.keskeytaAjastin();
+        }
     }
 
     public void naytaAikaLoppuiIlmoitus() {

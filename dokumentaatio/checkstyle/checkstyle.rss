@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2017</copyright>
     <item>
-      <title>File: 18,
+      <title>File: 21,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -47,6 +47,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.VaikeusasteKasittelija.java">cs/helsinki/sudoku/ui/kasittelija/VaikeusasteKasittelija.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.Kellonaytto.java">cs/helsinki/sudoku/ui/Kellonaytto.java</a>
                 </td>
                 <td>
                   0
@@ -116,6 +130,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.Ajastin.java">cs/helsinki/sudoku/ui/Ajastin.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.nakyma.Aloitusnakyma.java">cs/helsinki/sudoku/ui/nakyma/Aloitusnakyma.java</a>
                 </td>
                 <td>
@@ -131,6 +159,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.app.Vaikeusaste.java">cs/helsinki/sudoku/app/Vaikeusaste.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="${project.url}/checkstyle.html#cs.helsinki.sudoku.ui.kasittelija.Aikarajakasittelija.java">cs/helsinki/sudoku/ui/kasittelija/Aikarajakasittelija.java</a>
                 </td>
                 <td>
                   0

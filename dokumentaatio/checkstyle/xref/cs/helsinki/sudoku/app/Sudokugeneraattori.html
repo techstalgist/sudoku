@@ -58,7 +58,7 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">int</strong>[][] annaRuudut() {
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>          <strong class="jxr_keyword">return</strong> ruudut;
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>      }
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>      
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> asetaVaikeusaste(<a href="../../../../cs/helsinki/sudoku/app/Vaikeusaste.html">Vaikeusaste</a> aste) {
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>          <strong class="jxr_keyword">this</strong>.vaikeusaste = aste;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>      }
@@ -90,109 +90,115 @@
 <a class="jxr_linenumber" name="L82" href="#L82">82</a>          <strong class="jxr_keyword">for</strong> (SimpleEntry&lt;Integer, Integer&gt; ruutu : ruutulista) {
 <a class="jxr_linenumber" name="L83" href="#L83">83</a>              <strong class="jxr_keyword">int</strong> rivi = ruutu.getKey();
 <a class="jxr_linenumber" name="L84" href="#L84">84</a>              <strong class="jxr_keyword">int</strong> sarake = ruutu.getValue();
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>              <strong class="jxr_keyword">this</strong>.tyhjennettavanRivi = rivi;
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>              <strong class="jxr_keyword">this</strong>.tyhjennettavanSarake = sarake;
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>              <strong class="jxr_keyword">this</strong>.tyhjennettavanAlkupArvo = kloonattuLauta[rivi][sarake];
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>              kloonattuLauta[rivi][sarake] = 0;
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>              <strong class="jxr_keyword">if</strong> (tayta(kloonattuLauta, rivi, sarake, false, <strong class="jxr_keyword">true</strong>)) {
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>                  kloonattuLauta[rivi][sarake] = tyhjennettavanAlkupArvo;
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>              }
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>              <strong class="jxr_keyword">if</strong> (tyhjienLkm(kloonattuLauta) &gt;= tyhjienLkm) {
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>                  <strong class="jxr_keyword">break</strong>;
-<a class="jxr_linenumber" name="L95" href="#L95">95</a>              }
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>          }
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>          <em class="jxr_comment">// palautetaan arvot, jotta voidaan testata myöhemmin, oliko pohja oikein tyhjennetty</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>          <strong class="jxr_keyword">this</strong>.tyhjennettavanRivi = -1;
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>          <strong class="jxr_keyword">this</strong>.tyhjennettavanSarake = -1;
-<a class="jxr_linenumber" name="L100" href="#L100">100</a>         <strong class="jxr_keyword">this</strong>.tyhjennettavanAlkupArvo = 0;
-<a class="jxr_linenumber" name="L101" href="#L101">101</a>         ruudut = kloonattuLauta;
-<a class="jxr_linenumber" name="L102" href="#L102">102</a>     }
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 
-<a class="jxr_linenumber" name="L104" href="#L104">104</a>     <em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> <em class="jxr_comment">    </em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_comment">    PRINCIPLE:</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_comment">    0. some seed data. Notice that not all random data leads to a valid Sudoku board.</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_comment">    1. check if we found a solution or a contradiction</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_comment">    2. compute A = # of possible numbers for each cell</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_comment">    3. choose the cell C that has lowest A</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_comment">    4. assign a possible value to C</em>
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_comment">    5. do search recursively from step 1 (search should return false if not successful)</em>
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_comment">    <a href="http://norvig.com/sudoku.html" target="alexandria_uri">http://norvig.com/sudoku.html</a> </em>
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_comment">     */</em>
-<a class="jxr_linenumber" name="L115" href="#L115">115</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> tayta(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake, <strong class="jxr_keyword">boolean</strong> saaTyhjentaa, <strong class="jxr_keyword">boolean</strong> vertaaRatkaisuun) {
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
-<a class="jxr_linenumber" name="L117" href="#L117">117</a>         <strong class="jxr_keyword">if</strong> (onRatkaistu(lauta)) {
-<a class="jxr_linenumber" name="L118" href="#L118">118</a>             <strong class="jxr_keyword">if</strong> (!vertaaRatkaisuun) {
-<a class="jxr_linenumber" name="L119" href="#L119">119</a>                 ruudut = lauta;
-<a class="jxr_linenumber" name="L120" href="#L120">120</a>             }
-<a class="jxr_linenumber" name="L121" href="#L121">121</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L122" href="#L122">122</a>         }
-<a class="jxr_linenumber" name="L123" href="#L123">123</a> 
-<a class="jxr_linenumber" name="L124" href="#L124">124</a>         ArrayList&lt;SimpleEntry&lt;Integer, Integer&gt;&gt; tyhjatRuudutJoilleEiSopiviaLukuja = annaTyhjatRuudutJoilleEiSopiviaLukuja(lauta);
-<a class="jxr_linenumber" name="L125" href="#L125">125</a>         <strong class="jxr_keyword">if</strong> (!tyhjatRuudutJoilleEiSopiviaLukuja.isEmpty()) {
-<a class="jxr_linenumber" name="L126" href="#L126">126</a>             <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L127" href="#L127">127</a>         }
-<a class="jxr_linenumber" name="L128" href="#L128">128</a> 
-<a class="jxr_linenumber" name="L129" href="#L129">129</a>         ArrayList&lt;Integer&gt; kokeiltavaRuutu = ruutuJollaVahitenSopivia(lauta);
-<a class="jxr_linenumber" name="L130" href="#L130">130</a>         <strong class="jxr_keyword">if</strong> (kokeiltavaRuutu.get(2) == Integer.MAX_VALUE) {
-<a class="jxr_linenumber" name="L131" href="#L131">131</a>             <em class="jxr_comment">// ei yhtään ruutua, jolle löytyy sopivia lukuja       </em>
-<a class="jxr_linenumber" name="L132" href="#L132">132</a>             <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L133" href="#L133">133</a>         }
-<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">int</strong> kokeiltavanRivi = kokeiltavaRuutu.get(0);
-<a class="jxr_linenumber" name="L135" href="#L135">135</a>         <strong class="jxr_keyword">int</strong> kokeiltavanSarake = kokeiltavaRuutu.get(1);
-<a class="jxr_linenumber" name="L136" href="#L136">136</a> 
-<a class="jxr_linenumber" name="L137" href="#L137">137</a>         ArrayList&lt;Integer&gt; sopivatLuvut = laskeSopivatLuvutIlmanAlkuperaista(lauta, kokeiltavanRivi, kokeiltavanSarake);
-<a class="jxr_linenumber" name="L138" href="#L138">138</a>         Collections.shuffle(sopivatLuvut);
-<a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a>         <strong class="jxr_keyword">for</strong> (Integer i : sopivatLuvut) {
-<a class="jxr_linenumber" name="L141" href="#L141">141</a>             <strong class="jxr_keyword">int</strong>[][] uusiLauta = kloonaa(lauta);
-<a class="jxr_linenumber" name="L142" href="#L142">142</a>             uusiLauta[kokeiltavanRivi][kokeiltavanSarake] = i;
-<a class="jxr_linenumber" name="L143" href="#L143">143</a> 
-<a class="jxr_linenumber" name="L144" href="#L144">144</a>             <strong class="jxr_keyword">if</strong> (tayta(uusiLauta, kokeiltavanRivi, kokeiltavanSarake, saaTyhjentaa, vertaaRatkaisuun)) {
-<a class="jxr_linenumber" name="L145" href="#L145">145</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
-<a class="jxr_linenumber" name="L146" href="#L146">146</a>             }
-<a class="jxr_linenumber" name="L147" href="#L147">147</a>         }
-<a class="jxr_linenumber" name="L148" href="#L148">148</a>         <strong class="jxr_keyword">return</strong> false;
-<a class="jxr_linenumber" name="L149" href="#L149">149</a>     }
-<a class="jxr_linenumber" name="L150" href="#L150">150</a> 
-<a class="jxr_linenumber" name="L151" href="#L151">151</a>     <strong class="jxr_keyword">public</strong> ArrayList&lt;Integer&gt; ruutuJollaVahitenSopivia(<strong class="jxr_keyword">int</strong>[][] lauta) {
-<a class="jxr_linenumber" name="L152" href="#L152">152</a>         ArrayList&lt;Integer&gt; ruutuJaLkm = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
-<a class="jxr_linenumber" name="L153" href="#L153">153</a>         <strong class="jxr_keyword">int</strong> pieninLkm = Integer.MAX_VALUE;
-<a class="jxr_linenumber" name="L154" href="#L154">154</a>         <strong class="jxr_keyword">int</strong> pienimmanRivi = 0;
-<a class="jxr_linenumber" name="L155" href="#L155">155</a>         <strong class="jxr_keyword">int</strong> pienimmanSarake = 0;
-<a class="jxr_linenumber" name="L156" href="#L156">156</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; koko; i++) {
-<a class="jxr_linenumber" name="L157" href="#L157">157</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> j = 0; j &lt; koko; j++) {
-<a class="jxr_linenumber" name="L158" href="#L158">158</a>                 <strong class="jxr_keyword">if</strong> (!tyhjaRuutu(lauta, i, j)) {
-<a class="jxr_linenumber" name="L159" href="#L159">159</a>                     <strong class="jxr_keyword">continue</strong>;
-<a class="jxr_linenumber" name="L160" href="#L160">160</a>                 }
-<a class="jxr_linenumber" name="L161" href="#L161">161</a>                 <strong class="jxr_keyword">int</strong> lkm = laskeSopivatLuvutIlmanAlkuperaista(lauta, i, j).size();
-<a class="jxr_linenumber" name="L162" href="#L162">162</a>                 <strong class="jxr_keyword">if</strong> ((lkm &gt; 0) &amp;&amp; (lkm &lt; pieninLkm)) {
-<a class="jxr_linenumber" name="L163" href="#L163">163</a>                     pieninLkm = lkm;
-<a class="jxr_linenumber" name="L164" href="#L164">164</a>                     pienimmanRivi = i;
-<a class="jxr_linenumber" name="L165" href="#L165">165</a>                     pienimmanSarake = j;
-<a class="jxr_linenumber" name="L166" href="#L166">166</a>                 }
-<a class="jxr_linenumber" name="L167" href="#L167">167</a>             }
-<a class="jxr_linenumber" name="L168" href="#L168">168</a>         }
-<a class="jxr_linenumber" name="L169" href="#L169">169</a>         ruutuJaLkm.add(pienimmanRivi);
-<a class="jxr_linenumber" name="L170" href="#L170">170</a>         ruutuJaLkm.add(pienimmanSarake);
-<a class="jxr_linenumber" name="L171" href="#L171">171</a>         ruutuJaLkm.add(pieninLkm);
-<a class="jxr_linenumber" name="L172" href="#L172">172</a>         <strong class="jxr_keyword">return</strong> ruutuJaLkm;
-<a class="jxr_linenumber" name="L173" href="#L173">173</a>     }
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 
-<a class="jxr_linenumber" name="L175" href="#L175">175</a>     <strong class="jxr_keyword">public</strong> ArrayList&lt;Integer&gt; laskeSopivatLuvutIlmanAlkuperaista(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake) {
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 
-<a class="jxr_linenumber" name="L177" href="#L177">177</a>         ArrayList&lt;Integer&gt; sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 
-<a class="jxr_linenumber" name="L179" href="#L179">179</a>         <strong class="jxr_keyword">if</strong> (rivi == tyhjennettavanRivi &amp;&amp; sarake == tyhjennettavanSarake) {
-<a class="jxr_linenumber" name="L180" href="#L180">180</a>             sopivatLuvut.remove((Integer) tyhjennettavanAlkupArvo);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a>         }
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 
-<a class="jxr_linenumber" name="L183" href="#L183">183</a>         <strong class="jxr_keyword">return</strong> sopivatLuvut;
-<a class="jxr_linenumber" name="L184" href="#L184">184</a>     }
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>              asetaTyhjennettavanTiedot(rivi, sarake, kloonattuLauta[rivi][sarake]);
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>              kloonattuLauta[rivi][sarake] = 0;
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>              <strong class="jxr_keyword">if</strong> (tayta(kloonattuLauta, rivi, sarake, false, <strong class="jxr_keyword">true</strong>)) {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>                  kloonattuLauta[rivi][sarake] = tyhjennettavanAlkupArvo;
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>              }
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>              <strong class="jxr_keyword">if</strong> (tyhjienLkm(kloonattuLauta) &gt;= tyhjienLkm) {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>                  <strong class="jxr_keyword">break</strong>;
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>              }
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>          }
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>          <em class="jxr_comment">// palautetaan arvot, jotta voidaan testata myöhemmin, oliko pohja oikein tyhjennetty</em>
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>          asetaTyhjennettavanTiedot(-1, -1, 0);
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>          ruudut = kloonattuLauta;
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>      }
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  
+<a class="jxr_linenumber" name="L100" href="#L100">100</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> asetaTyhjennettavanTiedot(<strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake, <strong class="jxr_keyword">int</strong> alkupArvo) {
+<a class="jxr_linenumber" name="L101" href="#L101">101</a>         <strong class="jxr_keyword">this</strong>.tyhjennettavanRivi = rivi;
+<a class="jxr_linenumber" name="L102" href="#L102">102</a>         <strong class="jxr_keyword">this</strong>.tyhjennettavanSarake = sarake;
+<a class="jxr_linenumber" name="L103" href="#L103">103</a>         <strong class="jxr_keyword">this</strong>.tyhjennettavanAlkupArvo = alkupArvo;
+<a class="jxr_linenumber" name="L104" href="#L104">104</a>     }
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 
+<a class="jxr_linenumber" name="L106" href="#L106">106</a>     <em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_comment">    </em>
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_comment">    PRINCIPLE:</em>
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_comment">    0. some seed data. Notice that not all random data leads to a valid Sudoku board.</em>
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_comment">    1. check if we found a solution or a contradiction</em>
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> <em class="jxr_comment">    2. compute A = # of possible numbers for each cell</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_comment">    3. choose the cell C that has lowest A</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_comment">    4. assign a possible value to C</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_comment">    5. do search recursively from step 1 (search should return false if not successful)</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_comment">    <a href="http://norvig.com/sudoku.html" target="alexandria_uri">http://norvig.com/sudoku.html</a> </em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_comment">     */</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">boolean</strong> tayta(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake, <strong class="jxr_keyword">boolean</strong> saaTyhjentaa, <strong class="jxr_keyword">boolean</strong> vertaaRatkaisuun) {
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 
+<a class="jxr_linenumber" name="L119" href="#L119">119</a>         <strong class="jxr_keyword">if</strong> (tarkistaOnkoRatkaistu(lauta, vertaaRatkaisuun)) {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L121" href="#L121">121</a>         }
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 
+<a class="jxr_linenumber" name="L123" href="#L123">123</a>         ArrayList&lt;SimpleEntry&lt;Integer, Integer&gt;&gt; tyhjatRuudutJoilleEiSopiviaLukuja = annaTyhjatRuudutJoilleEiSopiviaLukuja(lauta);
+<a class="jxr_linenumber" name="L124" href="#L124">124</a>         <strong class="jxr_keyword">if</strong> (!tyhjatRuudutJoilleEiSopiviaLukuja.isEmpty()) {
+<a class="jxr_linenumber" name="L125" href="#L125">125</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L126" href="#L126">126</a>         }
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 
+<a class="jxr_linenumber" name="L128" href="#L128">128</a>         ArrayList&lt;Integer&gt; kokeiltavaRuutu = ruutuJollaVahitenSopivia(lauta);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a>         <strong class="jxr_keyword">if</strong> (kokeiltavaRuutu.get(2) == Integer.MAX_VALUE) {
+<a class="jxr_linenumber" name="L130" href="#L130">130</a>             <em class="jxr_comment">// ei yhtään ruutua, jolle löytyy sopivia lukuja       </em>
+<a class="jxr_linenumber" name="L131" href="#L131">131</a>             <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L132" href="#L132">132</a>         }
+<a class="jxr_linenumber" name="L133" href="#L133">133</a>         <strong class="jxr_keyword">int</strong> kokeiltavanRivi = kokeiltavaRuutu.get(0);
+<a class="jxr_linenumber" name="L134" href="#L134">134</a>         <strong class="jxr_keyword">int</strong> kokeiltavanSarake = kokeiltavaRuutu.get(1);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 
+<a class="jxr_linenumber" name="L136" href="#L136">136</a>         ArrayList&lt;Integer&gt; sopivatLuvut = laskeSopivatLuvutIlmanAlkuperaista(lauta, kokeiltavanRivi, kokeiltavanSarake);
+<a class="jxr_linenumber" name="L137" href="#L137">137</a>         Collections.shuffle(sopivatLuvut);
+<a class="jxr_linenumber" name="L138" href="#L138">138</a> 
+<a class="jxr_linenumber" name="L139" href="#L139">139</a>         <strong class="jxr_keyword">for</strong> (Integer i : sopivatLuvut) {
+<a class="jxr_linenumber" name="L140" href="#L140">140</a>             <strong class="jxr_keyword">int</strong>[][] uusiLauta = kloonaa(lauta);
+<a class="jxr_linenumber" name="L141" href="#L141">141</a>             uusiLauta[kokeiltavanRivi][kokeiltavanSarake] = i;
+<a class="jxr_linenumber" name="L142" href="#L142">142</a> 
+<a class="jxr_linenumber" name="L143" href="#L143">143</a>             <strong class="jxr_keyword">if</strong> (tayta(uusiLauta, kokeiltavanRivi, kokeiltavanSarake, saaTyhjentaa, vertaaRatkaisuun)) {
+<a class="jxr_linenumber" name="L144" href="#L144">144</a>                 <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L145" href="#L145">145</a>             }
+<a class="jxr_linenumber" name="L146" href="#L146">146</a>         }
+<a class="jxr_linenumber" name="L147" href="#L147">147</a>         <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L148" href="#L148">148</a>     }
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 
+<a class="jxr_linenumber" name="L150" href="#L150">150</a>     <strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> tarkistaOnkoRatkaistu(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">boolean</strong> vertaaRatkaisuun) {
+<a class="jxr_linenumber" name="L151" href="#L151">151</a>         <strong class="jxr_keyword">if</strong> (onRatkaistu(lauta)) {
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>             <strong class="jxr_keyword">if</strong> (!vertaaRatkaisuun) {
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>                 ruudut = lauta;
+<a class="jxr_linenumber" name="L154" href="#L154">154</a>             }
+<a class="jxr_linenumber" name="L155" href="#L155">155</a>             <strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">true</strong>;
+<a class="jxr_linenumber" name="L156" href="#L156">156</a>         }
+<a class="jxr_linenumber" name="L157" href="#L157">157</a>         <strong class="jxr_keyword">return</strong> false;
+<a class="jxr_linenumber" name="L158" href="#L158">158</a>     }
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 
+<a class="jxr_linenumber" name="L160" href="#L160">160</a>     <strong class="jxr_keyword">public</strong> ArrayList&lt;Integer&gt; ruutuJollaVahitenSopivia(<strong class="jxr_keyword">int</strong>[][] lauta) {
+<a class="jxr_linenumber" name="L161" href="#L161">161</a>         ArrayList&lt;Integer&gt; ruutuJaLkm = <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;();
+<a class="jxr_linenumber" name="L162" href="#L162">162</a>         <strong class="jxr_keyword">int</strong> pieninLkm = Integer.MAX_VALUE;
+<a class="jxr_linenumber" name="L163" href="#L163">163</a>         <strong class="jxr_keyword">int</strong> pienimmanRivi = 0;
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>         <strong class="jxr_keyword">int</strong> pienimmanSarake = 0;
+<a class="jxr_linenumber" name="L165" href="#L165">165</a>         <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> i = 0; i &lt; koko; i++) {
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>             <strong class="jxr_keyword">for</strong> (<strong class="jxr_keyword">int</strong> j = 0; j &lt; koko; j++) {
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>                 <strong class="jxr_keyword">if</strong> (!tyhjaRuutu(lauta, i, j)) {
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>                     <strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>                 }
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>                 <strong class="jxr_keyword">int</strong> lkm = laskeSopivatLuvutIlmanAlkuperaista(lauta, i, j).size();
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>                 <strong class="jxr_keyword">if</strong> ((lkm &gt; 0) &amp;&amp; (lkm &lt; pieninLkm)) {
+<a class="jxr_linenumber" name="L172" href="#L172">172</a>                     pieninLkm = lkm;
+<a class="jxr_linenumber" name="L173" href="#L173">173</a>                     pienimmanRivi = i;
+<a class="jxr_linenumber" name="L174" href="#L174">174</a>                     pienimmanSarake = j;
+<a class="jxr_linenumber" name="L175" href="#L175">175</a>                 }
+<a class="jxr_linenumber" name="L176" href="#L176">176</a>             }
+<a class="jxr_linenumber" name="L177" href="#L177">177</a>         }
+<a class="jxr_linenumber" name="L178" href="#L178">178</a>         ruutuJaLkm.add(pienimmanRivi);
+<a class="jxr_linenumber" name="L179" href="#L179">179</a>         ruutuJaLkm.add(pienimmanSarake);
+<a class="jxr_linenumber" name="L180" href="#L180">180</a>         ruutuJaLkm.add(pieninLkm);
+<a class="jxr_linenumber" name="L181" href="#L181">181</a>         <strong class="jxr_keyword">return</strong> ruutuJaLkm;
+<a class="jxr_linenumber" name="L182" href="#L182">182</a>     }
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 
+<a class="jxr_linenumber" name="L184" href="#L184">184</a>     <strong class="jxr_keyword">public</strong> ArrayList&lt;Integer&gt; laskeSopivatLuvutIlmanAlkuperaista(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake) {
 <a class="jxr_linenumber" name="L185" href="#L185">185</a> 
-<a class="jxr_linenumber" name="L186" href="#L186">186</a>     
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> }
+<a class="jxr_linenumber" name="L186" href="#L186">186</a>         ArrayList&lt;Integer&gt; sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a>         <strong class="jxr_keyword">if</strong> (rivi == tyhjennettavanRivi &amp;&amp; sarake == tyhjennettavanSarake) {
+<a class="jxr_linenumber" name="L188" href="#L188">188</a>             sopivatLuvut.remove((Integer) tyhjennettavanAlkupArvo);
+<a class="jxr_linenumber" name="L189" href="#L189">189</a>         }
+<a class="jxr_linenumber" name="L190" href="#L190">190</a>         <strong class="jxr_keyword">return</strong> sopivatLuvut;
+<a class="jxr_linenumber" name="L191" href="#L191">191</a>     }
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> 
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2017. All rights reserved.</div>

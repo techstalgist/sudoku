@@ -9,11 +9,11 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 
-public class Kello {
+public class Kellonaytto {
     JLabel label;
     private final Kayttoliittyma kali;
     
-    public Kello(Kayttoliittyma kali) {
+    public Kellonaytto(Kayttoliittyma kali) {
         this.label = new JLabel();
         paivitaUlkoasu();
         this.kali = kali;

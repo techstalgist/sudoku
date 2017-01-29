@@ -8,10 +8,10 @@ import java.awt.event.ActionListener;
 public class UusiPeliKasittelija implements ActionListener {
 
     private Kayttoliittyma ui;
-    private Nakymanhallinta nakyma;
+    private Nakymanhallinta hallinta;
 
-    public UusiPeliKasittelija(Nakymanhallinta nakyma, Kayttoliittyma ui) {
-        this.nakyma = nakyma;
+    public UusiPeliKasittelija(Nakymanhallinta hallinta, Kayttoliittyma ui) {
+        this.hallinta = hallinta;
         this.ui = ui;
     }
 
@@ -19,10 +19,10 @@ public class UusiPeliKasittelija implements ActionListener {
     public void actionPerformed(ActionEvent e) {
 
         ui.pyydaUusiPeli();
-        nakyma.taytaPelinaytto();
-        nakyma.naytaPelinaytto();
-        nakyma.kaynnistaAjastinPelinaytolla();
-
+        hallinta.taytaPelinaytto();
+        hallinta.naytaPelinaytto();
+        hallinta.kaynnistaAjastinPelinaytolla();
+        
     }
 
 }

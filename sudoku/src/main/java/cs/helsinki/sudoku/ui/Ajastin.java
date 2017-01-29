@@ -10,9 +10,9 @@ public class Ajastin implements Runnable {
     private volatile ScheduledFuture<?> self;
     private long paattymisaika;
     private ScheduledExecutorService ses;
-    private Kello kello;
+    private Kellonaytto kello;
 
-    public Ajastin(long paattymisaika, ScheduledExecutorService ses, Kello kello) {
+    public Ajastin(long paattymisaika, ScheduledExecutorService ses, Kellonaytto kello) {
         this.paattymisaika = paattymisaika;
         this.ses = ses;
         this.kello = kello;

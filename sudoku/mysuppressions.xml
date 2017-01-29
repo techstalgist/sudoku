@@ -11,4 +11,6 @@
     <suppress files="Pelinakyma.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Kayttoliittyma.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="LisaaPoistaSuodatin.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Ajastin.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Kellonaytto.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

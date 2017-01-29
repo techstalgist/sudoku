@@ -8,17 +8,18 @@ import cs.helsinki.sudoku.app.Vaikeusaste;
 public class Kayttoliittyma implements Runnable {
 
     private Pelimoottori moottori;
-    private Nakymanhallinta nakyma;
+    private Nakymanhallinta hallinta;
     private Vaikeusaste aste;
+    private boolean kaytaAikarajaa;
 
     public Kayttoliittyma(Pelimoottori moottori) {
         this.moottori = moottori;
-        this.nakyma = new Nakymanhallinta(this);
+        this.hallinta = new Nakymanhallinta(this);
     }
 
     @Override
     public void run() {
-        nakyma.init();
+        hallinta.init();
     }
     
     public void asetaVaikeusaste(Vaikeusaste aste) {
@@ -27,6 +28,10 @@ public class Kayttoliittyma implements Runnable {
     
     public Vaikeusaste annaVaikeusaste() {
         return aste;
+    }
+    
+    public boolean kaytaAikarajaa() {
+        return kaytaAikarajaa;
     }
 
     public void pyydaUusiPeli() {
@@ -43,17 +48,21 @@ public class Kayttoliittyma implements Runnable {
     public void paivitaArvo(int luku, int rivi, int sarake) {
         
         RuudunStatus[][] uudetStatukset = moottori.paivitaArvoPelilaudalla(luku, rivi, sarake);
-        nakyma.paivitaPelinaytonVarit(uudetStatukset);
+        hallinta.paivitaPelinaytonVarit(uudetStatukset);
         boolean peliValmis = moottori.peliValmis();
         if (peliValmis) {
-            nakyma.naytaValmisIlmoitus();
+            hallinta.naytaValmisIlmoitus();
         }
     }
 
     public void tarkistaPelitilanneAjanLoppuessa() {
         boolean peliValmis = moottori.peliValmis();
         if (!peliValmis) {
-            nakyma.naytaAikaLoppuiIlmoitus();
+            hallinta.naytaAikaLoppuiIlmoitus();
         }
+    }
+
+    public void asetaKaytaAikarajaa(boolean uusiArvo) {
+        this.kaytaAikarajaa = uusiArvo;
     }
 }

@@ -50,7 +50,7 @@ public class Sudokugeneraattori {
     public int[][] annaRuudut() {
         return ruudut;
     }
-    
+
     public void asetaVaikeusaste(Vaikeusaste aste) {
         this.vaikeusaste = aste;
     }
@@ -82,9 +82,7 @@ public class Sudokugeneraattori {
         for (SimpleEntry<Integer, Integer> ruutu : ruutulista) {
             int rivi = ruutu.getKey();
             int sarake = ruutu.getValue();
-            this.tyhjennettavanRivi = rivi;
-            this.tyhjennettavanSarake = sarake;
-            this.tyhjennettavanAlkupArvo = kloonattuLauta[rivi][sarake];
+            asetaTyhjennettavanTiedot(rivi, sarake, kloonattuLauta[rivi][sarake]);
             kloonattuLauta[rivi][sarake] = 0;
 
             if (tayta(kloonattuLauta, rivi, sarake, false, true)) {
@@ -95,10 +93,14 @@ public class Sudokugeneraattori {
             }
         }
         // palautetaan arvot, jotta voidaan testata myöhemmin, oliko pohja oikein tyhjennetty
-        this.tyhjennettavanRivi = -1;
-        this.tyhjennettavanSarake = -1;
-        this.tyhjennettavanAlkupArvo = 0;
+        asetaTyhjennettavanTiedot(-1, -1, 0);
         ruudut = kloonattuLauta;
+    }
+
+    private void asetaTyhjennettavanTiedot(int rivi, int sarake, int alkupArvo) {
+        this.tyhjennettavanRivi = rivi;
+        this.tyhjennettavanSarake = sarake;
+        this.tyhjennettavanAlkupArvo = alkupArvo;
     }
 
     /*
@@ -114,10 +116,7 @@ public class Sudokugeneraattori {
      */
     public boolean tayta(int[][] lauta, int rivi, int sarake, boolean saaTyhjentaa, boolean vertaaRatkaisuun) {
 
-        if (onRatkaistu(lauta)) {
-            if (!vertaaRatkaisuun) {
-                ruudut = lauta;
-            }
+        if (tarkistaOnkoRatkaistu(lauta, vertaaRatkaisuun)) {
             return true;
         }
 
@@ -144,6 +143,16 @@ public class Sudokugeneraattori {
             if (tayta(uusiLauta, kokeiltavanRivi, kokeiltavanSarake, saaTyhjentaa, vertaaRatkaisuun)) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean tarkistaOnkoRatkaistu(int[][] lauta, boolean vertaaRatkaisuun) {
+        if (onRatkaistu(lauta)) {
+            if (!vertaaRatkaisuun) {
+                ruudut = lauta;
+            }
+            return true;
         }
         return false;
     }
@@ -175,13 +184,10 @@ public class Sudokugeneraattori {
     public ArrayList<Integer> laskeSopivatLuvutIlmanAlkuperaista(int[][] lauta, int rivi, int sarake) {
 
         ArrayList<Integer> sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
-
         if (rivi == tyhjennettavanRivi && sarake == tyhjennettavanSarake) {
             sopivatLuvut.remove((Integer) tyhjennettavanAlkupArvo);
         }
-
         return sopivatLuvut;
     }
 
-    
 }

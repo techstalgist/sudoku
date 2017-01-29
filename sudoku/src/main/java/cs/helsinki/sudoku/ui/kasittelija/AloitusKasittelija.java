@@ -7,16 +7,16 @@ import java.awt.event.ActionListener;
 
 public class AloitusKasittelija implements ActionListener {
 
-    Nakymanhallinta nakyma;
+    Nakymanhallinta hallinta;
 
-    public AloitusKasittelija(Nakymanhallinta nakyma) {
-        this.nakyma = nakyma;
+    public AloitusKasittelija(Nakymanhallinta hallinta) {
+        this.hallinta = hallinta;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        nakyma.naytaAloitusnaytto();
-        nakyma.keskeytaAjastinPelinaytolla();
+        hallinta.naytaAloitusnaytto();
+        hallinta.keskeytaAjastinPelinaytolla();
     }
 
 }

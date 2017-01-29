@@ -9,3 +9,5 @@ Päivä | Tunnit | Kuvaus
 18.01.2017 | 2h | UI koodausta
 20.01.2017 | 1h | UI ja logiikkakoodausta
 25.01.2017 | 1h | testejä, kaavioiden ja raporttien päivittämistä
+28.01.2017 | 4h | ajastimen koodausta
+29.01.2017 | 1,5h | ajastimen lisäys sovellukseen, testejä, ja uudet raportit
