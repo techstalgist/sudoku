@@ -11,3 +11,4 @@ Päivä | Tunnit | Kuvaus
 25.01.2017 | 1h | testejä, kaavioiden ja raporttien päivittämistä
 28.01.2017 | 4h | ajastimen koodausta
 29.01.2017 | 1,5h | ajastimen lisäys sovellukseen, testejä, ja uudet raportit
+02.02.2017 | 2h | JavaDoccia

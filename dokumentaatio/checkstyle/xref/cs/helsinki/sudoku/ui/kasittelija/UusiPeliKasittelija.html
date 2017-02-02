@@ -12,28 +12,31 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionEvent;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> java.awt.event.ActionListener;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../cs/helsinki/sudoku/ui/kasittelija/UusiPeliKasittelija.html">UusiPeliKasittelija</a> <strong class="jxr_keyword">implements</strong> ActionListener {
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../cs/helsinki/sudoku/ui/Kayttoliittyma.html">Kayttoliittyma</a> ui;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../cs/helsinki/sudoku/ui/nakyma/Nakymanhallinta.html">Nakymanhallinta</a> hallinta;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * Käsittelee Uusi peli-painikkeen painamisen.</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../cs/helsinki/sudoku/ui/kasittelija/UusiPeliKasittelija.html">UusiPeliKasittelija</a> <strong class="jxr_keyword">implements</strong> ActionListener {
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../cs/helsinki/sudoku/ui/kasittelija/UusiPeliKasittelija.html">UusiPeliKasittelija</a>(<a href="../../../../../cs/helsinki/sudoku/ui/nakyma/Nakymanhallinta.html">Nakymanhallinta</a> hallinta, <a href="../../../../../cs/helsinki/sudoku/ui/Kayttoliittyma.html">Kayttoliittyma</a> ui) {
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>          <strong class="jxr_keyword">this</strong>.hallinta = hallinta;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>          <strong class="jxr_keyword">this</strong>.ui = ui;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>      }
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>      @Override
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(ActionEvent e) {
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../cs/helsinki/sudoku/ui/Kayttoliittyma.html">Kayttoliittyma</a> ui;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>      <strong class="jxr_keyword">private</strong> <a href="../../../../../cs/helsinki/sudoku/ui/nakyma/Nakymanhallinta.html">Nakymanhallinta</a> hallinta;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>      <strong class="jxr_keyword">public</strong> <a href="../../../../../cs/helsinki/sudoku/ui/kasittelija/UusiPeliKasittelija.html">UusiPeliKasittelija</a>(<a href="../../../../../cs/helsinki/sudoku/ui/nakyma/Nakymanhallinta.html">Nakymanhallinta</a> hallinta, <a href="../../../../../cs/helsinki/sudoku/ui/Kayttoliittyma.html">Kayttoliittyma</a> ui) {
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>          <strong class="jxr_keyword">this</strong>.hallinta = hallinta;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>          <strong class="jxr_keyword">this</strong>.ui = ui;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>      }
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>          ui.pyydaUusiPeli();
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>          hallinta.taytaPelinaytto();
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>          hallinta.naytaPelinaytto();
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>          hallinta.kaynnistaAjastinPelinaytolla();
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>          
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>      }
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  }
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>      @Override
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>      <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> actionPerformed(ActionEvent e) {
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>          ui.pyydaUusiPeli();
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>          hallinta.taytaPelinaytto();
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>          hallinta.naytaPelinaytto();
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>          hallinta.kaynnistaAjastinPelinaytolla();
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>          
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>      }
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2017. All rights reserved.</div>
