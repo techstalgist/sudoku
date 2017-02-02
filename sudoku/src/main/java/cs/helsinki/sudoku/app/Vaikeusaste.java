@@ -19,13 +19,28 @@ public enum Vaikeusaste {
         this.sekunnit = sekunnit;
     }
     
+    /**
+    * Metodi kertoo, kuinka monta ruutua pitää tyhjentää vaikeusasteelle.
+    * @return tyhjennettävien ruutujen lukumäärä
+    */
+    
     public int annaTyhjennettavienLkm() {
         return tyhjennettavienLkm;
     }
     
+    /**
+    * Metodi kertoo, kuinka monta minuuttia pelin ratkaisemiseen on aikaa ko. vaikeusasteella.
+    * @return minuutit kokonaislukuna
+    */
+    
     public int annaMinuutit() {
         return minuutit;
     }
+    
+     /**
+    * Metodi kertoo, kuinka monta sekuntia pelin ratkaisemiseen on aikaa ko. vaikeusasteella.
+    * @return sekunnit kokonaislukuna
+    */
     
     public int annaSekunnit() {
         return sekunnit;

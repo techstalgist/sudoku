@@ -1,7 +1,6 @@
 package cs.helsinki.sudoku.app;
 
 import static cs.helsinki.sudoku.util.SopivatLuvut.*;
-import static cs.helsinki.sudoku.util.Util.tulosta;
 import java.util.Arrays;
 
 /**
@@ -24,10 +23,23 @@ public class Sudokupeli {
         this.ratkaisu = ratkaisu;
         this.vaikeusaste = vaikeusaste;
     }
+    
+    /**
+    * Metodi palauttaa senhetkisen pelilaudan.
+    * @return pelilauta kokonaislukutaulukkona
+    */
 
     public int[][] annaPelilauta() {
         return lauta;
     }
+    
+    /**
+    * Metodi päivittää annettuun ruutuun annetun arvon ja palauttaa ruutujen statukset päivityksen jälkeen.
+    * @param arvo uusi arvo
+    * @param i rivi
+    * @param j sarake
+    * @return RuudunStatus-taulukko päivityksen jälkeen
+    */
 
     public RuudunStatus[][] paivitaArvo(int arvo, int i, int j) {
 
@@ -36,22 +48,29 @@ public class Sudokupeli {
 
         return paivitaRuutujenStatukset(i, j, onSopivaLuku);
     }
+    
+    /**
+    * Metodi palauttaa tiedon siitä onko Sudouupeli valmis vai ei.
+    * @return boolean arvo, joka kertoo että onko lauta -muuttujassa samat arvot kuin ratkaisussa
+    */
 
     public boolean valmis() {
         return Arrays.deepEquals(lauta, ratkaisu);
     }
-
-    public void tulostaLauta() {
-        tulosta(koko, lauta);
-    }
-
-    public void tulostaRatkaisu() {
-        tulosta(koko, ratkaisu);
-    }
+    
+    /**
+    * Metodi palauttaa Sudokupelin vaikeusasteen.
+    * @return vaikeusate
+    */
 
     public Vaikeusaste annaVaikeusaste() {
         return vaikeusaste;
     }
+    
+    /**
+    * Metodi palauttaa senhetkiset pelilaudan ruutujen statukset.
+    * @return taulukko ruutujen statuksista
+    */
 
     public RuudunStatus[][] annaStatukset() {
         return ruutujenStatukset;

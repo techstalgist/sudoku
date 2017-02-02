@@ -31,34 +31,77 @@ public class Sudokugeneraattori {
         this.tyhjennettavanSarake = -1;
         this.tyhjennettavanAlkupArvo = 0;
     }
+    
+    /**
+    * Metodi asettaa annetun listan ruutulistaksi testausta varten.
+    *
+    * @param lista lista lukupareja muodossa rivi, sarake
+    */
 
     public void asetaRuutulista(ArrayList<SimpleEntry<Integer, Integer>> lista) {
         this.ruutulista = lista;
     }
+    
+    /**
+    * Metodi palauttaa ruutulistan.
+    *
+    * @return lista ruutuja muodossa rivi, sarake
+    */
 
     public ArrayList<SimpleEntry<Integer, Integer>> annaRuutulista() {
         return ruutulista;
     }
+    
+    /**
+    * Metodi asettaa ruudut -oliomuuttujan taulukon ratkaisu-oliomuuttujaan.
+    *
+    */
 
     public void asetaRatkaisu() {
         this.ratkaisu = this.ruudut;
     }
+    
+    /**
+    * Metodi palauttaa ratkaisu-oliomuuttujan arvon.
+    *  @return ratkaisu kokonaislukutaulukkona
+    */
 
     public int[][] annaRatkaisu() {
         return ratkaisu;
     }
+    
+    /**
+    * Metodi asettaa annetun taulukon ruudut-oliomuuttujaksi.
+    * @param pohja kokonaislukutaulukko jossa valmis pelipohja
+    */
 
     public void asetaRuudut(int[][] pohja) {
         ruudut = pohja;
     }
-
+    
+    /**
+    * Metodi palauttaa senhetkisen pelilaudan.
+    *  @return ruudut eli senhetkinen pelilauta kokonaislukutaulukkona
+    */
+    
     public int[][] annaRuudut() {
         return ruudut;
     }
+    
+    /**
+    * Metodi asettaa vaikeusasteen Sudokugeneraattorille.
+    * @param aste haluttu vaikeusaste
+    *  
+    */
 
     public void asetaVaikeusaste(Vaikeusaste aste) {
         this.vaikeusaste = aste;
     }
+    
+    /**
+    * Metodi palauttaa uuden Sudokupelin.
+    *  @return Sudokupeli, jossa pelilauta, ratkaisu ja vaikeusaste ovat samat kuin ko. oliomuuttujien senhetkiset arvot
+    */
 
     public Sudokupeli annaUusiSudokupeli() {
         return new Sudokupeli(ruudut, ratkaisu, vaikeusaste);
@@ -71,11 +114,25 @@ public class Sudokugeneraattori {
             }
         }
     }
+    
+    /**
+    * Metodi tyhjentää ruudut ja ruutulista- oliomuuttujat.
+    * Tämä on tarpeen silloin jos generaattoria käyttää useaan kertaan peräkkäin pelin luontiin.
+    */
 
     public void tyhjennaRuudutJaRuutulista() {
         tyhjennaLauta(ruudut);
         ruutulista.clear();
     }
+    
+    /**
+    * Metodi tyhjentää vaikeusasteen mukaisen määrän ruutuja valmiiksi täytetyltä pelilaudalta.
+    * Arpoo ensin satunnaisen listan ruutuja (yht 81 kpl)
+    * Käy läpi listan siten, että tyhjentää ensin ko. ruudun. Sitten kutsuu tayta -metodia ja tarkistaa, onko peli mahdollista ratkaista
+    * käyttämällä ko. ruudussa jotain muuta kuin alkuperäistä arvoa. Jos on, niin alkuperäinen arvo palautetaan, koska ratkaisu ei säily uniikkina.
+    * Jos ei ole, niin ruutu pysyy tyhjänä.
+    * Lopetetaan kun tyhjiä ruutuja on haluttu määrä.
+    */
 
     public void tyhjennaRuutujaTaydeltaLaudalta() {
         int tyhjienLkm = vaikeusaste.annaTyhjennettavienLkm();
@@ -108,9 +165,15 @@ public class Sudokugeneraattori {
         this.tyhjennettavanAlkupArvo = alkupArvo;
     }
 
-    /*
-    
-    PRINCIPLE:
+    /**
+    * Metodi täyttää parametrina annetun pelilaudan alkaen annetusta rivistä ja sarakkeesta.
+    * @param lauta pelilauta joka halutaan täyttää
+    * @param rivi rivi, jolta täyttäminen aloitetaan
+    * @param sarake sarake, jolta täyttäminen aloitetaan
+    * @param saaTyhjentaa ???
+    * @param vertaaRatkaisuun jos ratkaisu löytyy, niin halutaanko vain saada tieto siitä että ratkaisu löytyi (true), vai halutaanko myös asettaa ratkaisu ruudut-oliomuuttujaan.
+    * Toimintaperiaate:
+    * PRINCIPLE:
     0. some seed data. Notice that not all random data leads to a valid Sudoku board.
     1. check if we found a solution or a contradiction
     2. compute A = # of possible numbers for each cell
@@ -118,7 +181,10 @@ public class Sudokugeneraattori {
     4. assign a possible value to C
     5. do search recursively from step 1 (search should return false if not successful)
     http://norvig.com/sudoku.html 
+    * @return boolean arvo, joka kertoo onnistuiko laudan täyttäminen vai ei.
      */
+    
+    
     public boolean tayta(int[][] lauta, int rivi, int sarake, boolean saaTyhjentaa, boolean vertaaRatkaisuun) {
 
         if (tarkistaOnkoRatkaistu(lauta, vertaaRatkaisuun)) {
@@ -161,6 +227,13 @@ public class Sudokugeneraattori {
         }
         return false;
     }
+    
+    /**
+    * Metodi palauttaa annetulle pelilaudalle ruudun, jolla on vähiten sopivia lukuja.
+    * @param lauta pelilauta kokonaislukutaulukkona
+    * @return ArrayList, jossa ekana ruudun rivi, tokana sarake, ja kolmantena sopivien lukujen lkm.
+    * 
+    */
 
     public ArrayList<Integer> ruutuJollaVahitenSopivia(int[][] lauta) {
         ArrayList<Integer> ruutuJaLkm = new ArrayList<>();
@@ -185,6 +258,15 @@ public class Sudokugeneraattori {
         ruutuJaLkm.add(pieninLkm);
         return ruutuJaLkm;
     }
+    
+    /**
+    * Metodi kutsuu laskeSopivatLuvut metodia pelilaudan tietylle ruudulle ja palauttaa listan sopivia lukuja, ilman ruudun alkuperäistä arvoa.
+    * @param lauta jota käytetään
+    * @param rivi rivi jolle sopivat luvut halutaan laskea
+    * @param sarake sarake jolle sopivat luvut halutaan laskea
+    * @return lista jossa on ruutuun sopivat luvut (ilman ruudun alkuperäistä arvoa)
+    */
+
 
     public ArrayList<Integer> laskeSopivatLuvutIlmanAlkuperaista(int[][] lauta, int rivi, int sarake) {
 

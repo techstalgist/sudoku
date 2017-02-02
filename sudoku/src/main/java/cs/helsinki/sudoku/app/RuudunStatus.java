@@ -18,6 +18,12 @@ public enum RuudunStatus {
         this.vari = vari;
     }
     
+    /**
+    * Metodi palauttaa RuudunStatuksen värin.
+    *
+    * @return väri Color -oliona
+    */
+    
     public Color annaVari() {
         return vari;
     }
