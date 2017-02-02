@@ -27,11 +27,11 @@ public class Kayttoliittyma implements Runnable {
         hallinta.init();
     }
     
-    public void asetaVaikeusaste(Vaikeusaste aste) {
+    public void setVaikeusaste(Vaikeusaste aste) {
         this.aste = aste;
     }
     
-    public Vaikeusaste annaVaikeusaste() {
+    public Vaikeusaste getVaikeusaste() {
         return aste;
     }
     
@@ -47,7 +47,7 @@ public class Kayttoliittyma implements Runnable {
     }
 
     public int[][] pyydaPelilauta() {
-        return moottori.annaPelilauta();
+        return moottori.pyydaPelilauta();
     }
     
     public void paivitaArvo(int luku, int rivi, int sarake) {
@@ -67,7 +67,7 @@ public class Kayttoliittyma implements Runnable {
         }
     }
 
-    public void asetaKaytaAikarajaa(boolean uusiArvo) {
+    public void setKaytaAikarajaa(boolean uusiArvo) {
         this.kaytaAikarajaa = uusiArvo;
     }
 }

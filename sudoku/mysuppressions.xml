@@ -13,4 +13,9 @@
     <suppress files="LisaaPoistaSuodatin.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Ajastin.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="Kellonaytto.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="Aikarajakasittelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="AloitusKasittelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="UusiPeliKasittelija.java" checks="[a-zA-Z0-9]*"/>
+    <suppress files="VaikeusasteKasittelija.java" checks="[a-zA-Z0-9]*"/>
+    
 </suppressions>

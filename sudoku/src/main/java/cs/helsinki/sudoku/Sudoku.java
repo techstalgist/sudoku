@@ -9,7 +9,12 @@ import javax.swing.SwingUtilities;
  */
 
 public class Sudoku {
-
+    
+    /**
+    * Sovelluksen käynnistävä main-metodi. Luo Sudokugeneraattorin, pelimoottorin ja käynnistää käyttöliittymän.
+    * @param args argumentit
+    */
+    
     public static void main(String[] args) {
 
         Sudokugeneraattori generaattori = new Sudokugeneraattori();

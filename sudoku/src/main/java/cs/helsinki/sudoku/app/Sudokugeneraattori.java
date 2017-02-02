@@ -1,5 +1,4 @@
 package cs.helsinki.sudoku.app;
-
 import static cs.helsinki.sudoku.util.GeneraattoriUtil.*;
 import static cs.helsinki.sudoku.util.SopivatLuvut.*;
 import java.util.AbstractMap.SimpleEntry;
@@ -12,7 +11,6 @@ import java.util.Collections;
  */
 
 public class Sudokugeneraattori {
-
     private int koko;
     private int[][] ruudut;
     private int[][] ratkaisu;
@@ -22,6 +20,11 @@ public class Sudokugeneraattori {
     private int tyhjennettavanAlkupArvo;
     private Vaikeusaste vaikeusaste;
 
+    /**
+    * Luo uuden Sudokugeneraattori -olion, ja sille tyhjän pelilaudan, ratkaisun ja ruutulistan.
+    * Pelilaudan koko on vakio 9x9. Asettaa myös alkuarvoja ruutujen tyhjentämisessä tarvittaville muuttujille.
+    */
+    
     public Sudokugeneraattori() {
         this.koko = 9;
         this.ruudut = new int[koko][koko];
@@ -31,70 +34,36 @@ public class Sudokugeneraattori {
         this.tyhjennettavanSarake = -1;
         this.tyhjennettavanAlkupArvo = 0;
     }
-    
-    /**
-    * Metodi asettaa annetun listan ruutulistaksi testausta varten.
-    *
-    * @param lista lista lukupareja muodossa rivi, sarake
-    */
 
-    public void asetaRuutulista(ArrayList<SimpleEntry<Integer, Integer>> lista) {
+    public void setRuutulista(ArrayList<SimpleEntry<Integer, Integer>> lista) {
         this.ruutulista = lista;
     }
-    
-    /**
-    * Metodi palauttaa ruutulistan.
-    *
-    * @return lista ruutuja muodossa rivi, sarake
-    */
 
-    public ArrayList<SimpleEntry<Integer, Integer>> annaRuutulista() {
+    public ArrayList<SimpleEntry<Integer, Integer>> getRuutulista() {
         return ruutulista;
     }
     
     /**
-    * Metodi asettaa ruudut -oliomuuttujan taulukon ratkaisu-oliomuuttujaan.
-    *
+    * Asettaa valmiiksi täytetyn pelilaudan ratkaisuksi.
     */
 
-    public void asetaRatkaisu() {
+    public void asetaPelilautaRatkaisuksi() {
         this.ratkaisu = this.ruudut;
     }
-    
-    /**
-    * Metodi palauttaa ratkaisu-oliomuuttujan arvon.
-    *  @return ratkaisu kokonaislukutaulukkona
-    */
 
-    public int[][] annaRatkaisu() {
+    public int[][] getRatkaisu() {
         return ratkaisu;
     }
-    
-    /**
-    * Metodi asettaa annetun taulukon ruudut-oliomuuttujaksi.
-    * @param pohja kokonaislukutaulukko jossa valmis pelipohja
-    */
 
-    public void asetaRuudut(int[][] pohja) {
+    public void setRuudut(int[][] pohja) {
         ruudut = pohja;
     }
-    
-    /**
-    * Metodi palauttaa senhetkisen pelilaudan.
-    *  @return ruudut eli senhetkinen pelilauta kokonaislukutaulukkona
-    */
-    
-    public int[][] annaRuudut() {
+
+    public int[][] getRuudut() {
         return ruudut;
     }
-    
-    /**
-    * Metodi asettaa vaikeusasteen Sudokugeneraattorille.
-    * @param aste haluttu vaikeusaste
-    *  
-    */
 
-    public void asetaVaikeusaste(Vaikeusaste aste) {
+    public void setVaikeusaste(Vaikeusaste aste) {
         this.vaikeusaste = aste;
     }
     
@@ -129,25 +98,22 @@ public class Sudokugeneraattori {
     * Metodi tyhjentää vaikeusasteen mukaisen määrän ruutuja valmiiksi täytetyltä pelilaudalta.
     * Arpoo ensin satunnaisen listan ruutuja (yht 81 kpl)
     * Käy läpi listan siten, että tyhjentää ensin ko. ruudun. Sitten kutsuu tayta -metodia ja tarkistaa, onko peli mahdollista ratkaista
-    * käyttämällä ko. ruudussa jotain muuta kuin alkuperäistä arvoa. Jos on, niin alkuperäinen arvo palautetaan, koska ratkaisu ei säily uniikkina.
-    * Jos ei ole, niin ruutu pysyy tyhjänä.
+    * käyttämällä ko. ruudussa jotain muuta kuin alkuperäistä arvoa. Jos on, niin alkuperäinen arvo palautetaan, koska ratkaisu ei säily uniikkina. Jos ei ole, niin ruutu pysyy tyhjänä.
     * Lopetetaan kun tyhjiä ruutuja on haluttu määrä.
     */
 
     public void tyhjennaRuutujaTaydeltaLaudalta() {
-        int tyhjienLkm = vaikeusaste.annaTyhjennettavienLkm();
+        int tyhjienLkm = vaikeusaste.getTyhjennettavienLkm();
         if (ruutulista.isEmpty()) {
             ruutulista = annaListaRuutuja();
         }
-
         int[][] kloonattuLauta = kloonaa(ruudut);
         for (SimpleEntry<Integer, Integer> ruutu : ruutulista) {
             int rivi = ruutu.getKey();
             int sarake = ruutu.getValue();
             asetaTyhjennettavanTiedot(rivi, sarake, kloonattuLauta[rivi][sarake]);
             kloonattuLauta[rivi][sarake] = 0;
-
-            if (tayta(kloonattuLauta, rivi, sarake, false, true)) {
+            if (tayta(kloonattuLauta, rivi, sarake, true)) {
                 kloonattuLauta[rivi][sarake] = tyhjennettavanAlkupArvo;
             }
             if (tyhjienLkm(kloonattuLauta) >= tyhjienLkm) {
@@ -167,35 +133,23 @@ public class Sudokugeneraattori {
 
     /**
     * Metodi täyttää parametrina annetun pelilaudan alkaen annetusta rivistä ja sarakkeesta.
+    * Toimintaperiaate: http://norvig.com/sudoku.html 
     * @param lauta pelilauta joka halutaan täyttää
     * @param rivi rivi, jolta täyttäminen aloitetaan
     * @param sarake sarake, jolta täyttäminen aloitetaan
-    * @param saaTyhjentaa ???
     * @param vertaaRatkaisuun jos ratkaisu löytyy, niin halutaanko vain saada tieto siitä että ratkaisu löytyi (true), vai halutaanko myös asettaa ratkaisu ruudut-oliomuuttujaan.
-    * Toimintaperiaate:
-    * PRINCIPLE:
-    0. some seed data. Notice that not all random data leads to a valid Sudoku board.
-    1. check if we found a solution or a contradiction
-    2. compute A = # of possible numbers for each cell
-    3. choose the cell C that has lowest A
-    4. assign a possible value to C
-    5. do search recursively from step 1 (search should return false if not successful)
-    http://norvig.com/sudoku.html 
     * @return boolean arvo, joka kertoo onnistuiko laudan täyttäminen vai ei.
-     */
+    */
     
-    
-    public boolean tayta(int[][] lauta, int rivi, int sarake, boolean saaTyhjentaa, boolean vertaaRatkaisuun) {
+    public boolean tayta(int[][] lauta, int rivi, int sarake, boolean vertaaRatkaisuun) {
 
         if (tarkistaOnkoRatkaistu(lauta, vertaaRatkaisuun)) {
             return true;
         }
-
         ArrayList<SimpleEntry<Integer, Integer>> tyhjatRuudutJoilleEiSopiviaLukuja = annaTyhjatRuudutJoilleEiSopiviaLukuja(lauta);
         if (!tyhjatRuudutJoilleEiSopiviaLukuja.isEmpty()) {
             return false;
         }
-
         ArrayList<Integer> kokeiltavaRuutu = ruutuJollaVahitenSopivia(lauta);
         if (kokeiltavaRuutu.get(2) == Integer.MAX_VALUE) {
             // ei yhtään ruutua, jolle löytyy sopivia lukuja       
@@ -203,15 +157,12 @@ public class Sudokugeneraattori {
         }
         int kokeiltavanRivi = kokeiltavaRuutu.get(0);
         int kokeiltavanSarake = kokeiltavaRuutu.get(1);
-
         ArrayList<Integer> sopivatLuvut = laskeSopivatLuvutIlmanAlkuperaista(lauta, kokeiltavanRivi, kokeiltavanSarake);
         Collections.shuffle(sopivatLuvut);
-
         for (Integer i : sopivatLuvut) {
             int[][] uusiLauta = kloonaa(lauta);
             uusiLauta[kokeiltavanRivi][kokeiltavanSarake] = i;
-
-            if (tayta(uusiLauta, kokeiltavanRivi, kokeiltavanSarake, saaTyhjentaa, vertaaRatkaisuun)) {
+            if (tayta(uusiLauta, kokeiltavanRivi, kokeiltavanSarake, vertaaRatkaisuun)) {
                 return true;
             }
         }
@@ -267,7 +218,6 @@ public class Sudokugeneraattori {
     * @return lista jossa on ruutuun sopivat luvut (ilman ruudun alkuperäistä arvoa)
     */
 
-
     public ArrayList<Integer> laskeSopivatLuvutIlmanAlkuperaista(int[][] lauta, int rivi, int sarake) {
 
         ArrayList<Integer> sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
@@ -276,5 +226,4 @@ public class Sudokugeneraattori {
         }
         return sopivatLuvut;
     }
-
 }

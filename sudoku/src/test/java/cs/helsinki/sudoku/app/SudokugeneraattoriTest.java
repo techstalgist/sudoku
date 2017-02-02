@@ -19,64 +19,64 @@ public class SudokugeneraattoriTest {
     
     @Test
     public void tayttaaPohjanOikein() {
-        p.asetaRuudut(u.valmisPohja1());
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        assertArrayEquals(u.oikeaTulos1(), p.annaRuudut());
+        p.setRuudut(u.valmisPohja1());
+        p.tayta(p.getRuudut(),1,0, false);
+        assertArrayEquals(u.oikeaTulos1(), p.getRuudut());
     }
     
     @Test
     public void tayttaaToisenPohjanOikein() {
-        p.asetaRuudut(u.valmisPohja2());
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        assertArrayEquals(u.oikeaTulos2(), p.annaRuudut());
+        p.setRuudut(u.valmisPohja2());
+        p.tayta(p.getRuudut(),1,0, false);
+        assertArrayEquals(u.oikeaTulos2(), p.getRuudut());
     }
     
     @Test
     public void tayttaaKolmannenPohjanOikein() {
-        p.asetaRuudut(u.valmisPohja3());
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        assertArrayEquals(u.oikeaTulos3(), p.annaRuudut());
+        p.setRuudut(u.valmisPohja3());
+        p.tayta(p.getRuudut(),1,0, false);
+        assertArrayEquals(u.oikeaTulos3(), p.getRuudut());
     }
     
     @Test
     public void tayttaaVaikeanPohjan() {
-        p.asetaRuudut(u.vaikeaPohja());
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        assertArrayEquals(u.vaikeanPohjanRatkaisu(), p.annaRuudut());
+        p.setRuudut(u.vaikeaPohja());
+        p.tayta(p.getRuudut(),1,0, false);
+        assertArrayEquals(u.vaikeanPohjanRatkaisu(), p.getRuudut());
     }
             
     @Test
     public void taytettyPohjaSailyySamanaTyhjennyksenJalkeen() {
-        p.asetaRuudut(u.valmisRatkaisu());
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        int[][] alkupRatkaisu = p.annaRuudut();
-        p.asetaRuutulista(u.ruutulista());
-        p.asetaVaikeusaste(Vaikeusaste.KESKITASO);
+        p.setRuudut(u.valmisRatkaisu());
+        p.tayta(p.getRuudut(),1,0, false);
+        int[][] alkupRatkaisu = p.getRuudut();
+        p.setRuutulista(u.ruutulista());
+        p.setVaikeusaste(Vaikeusaste.KESKITASO);
         p.tyhjennaRuutujaTaydeltaLaudalta();
-        p.tayta(p.annaRuudut(),1,0, false, false);
-        assertArrayEquals(alkupRatkaisu, p.annaRuudut());
+        p.tayta(p.getRuudut(),1,0, false);
+        assertArrayEquals(alkupRatkaisu, p.getRuudut());
     }
     
     @Test
     public void laskeeOikeinRuudunSopivatLuvut() {
-        p.asetaRuudut(u.valmisPohja4());
-        ArrayList<Integer> sopivat = p.laskeSopivatLuvutIlmanAlkuperaista(p.annaRuudut(), 6, 6);
+        p.setRuudut(u.valmisPohja4());
+        ArrayList<Integer> sopivat = p.laskeSopivatLuvutIlmanAlkuperaista(p.getRuudut(), 6, 6);
         ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
         assertTrue(oikeatSopivat.equals(sopivat));
     }
     
     @Test 
     public void laskeeOikeinRuudunJollaVahitenSopivia() {
-        p.asetaRuudut(u.valmisPohja4());
-        ArrayList<Integer> ruutu = p.ruutuJollaVahitenSopivia(p.annaRuudut());
+        p.setRuudut(u.valmisPohja4());
+        ArrayList<Integer> ruutu = p.ruutuJollaVahitenSopivia(p.getRuudut());
         ArrayList<Integer> oikeaRuutu = new ArrayList<>(Arrays.asList(0, 7, 1));
         assertTrue(oikeaRuutu.equals(ruutu));
     }
     
     @Test
     public void antaaPoikkeavatTiedotJosEiYhtaanSopivaaRuutua() {
-        p.asetaRuudut(u.lautaJollaEiYhtaanSopivaa());
-        ArrayList<Integer> ruutu = p.ruutuJollaVahitenSopivia(p.annaRuudut());
+        p.setRuudut(u.lautaJollaEiYhtaanSopivaa());
+        ArrayList<Integer> ruutu = p.ruutuJollaVahitenSopivia(p.getRuudut());
         ArrayList<Integer> oikeatTiedot = new ArrayList<>(Arrays.asList(0, 0, Integer.MAX_VALUE));
         assertTrue(oikeatTiedot.equals(ruutu));
     }
@@ -88,13 +88,13 @@ public class SudokugeneraattoriTest {
         while(pelienLkm < 30) {
             pelienLkm++;
             Sudokugeneraattori p1 = new Sudokugeneraattori();
-            p1.tayta(p1.annaRuudut(), 1,0, true, false);
-            p1.asetaRatkaisu();
-            int[][] alkupRatkaisu = p1.annaRatkaisu();
-            p1.asetaVaikeusaste(Vaikeusaste.KESKITASO);
+            p1.tayta(p1.getRuudut(), 1,0, false);
+            p1.asetaPelilautaRatkaisuksi();
+            int[][] alkupRatkaisu = p1.getRatkaisu();
+            p1.setVaikeusaste(Vaikeusaste.KESKITASO);
             p1.tyhjennaRuutujaTaydeltaLaudalta();
-            p1.tayta(p1.annaRuudut(), 1,0, false, false);
-            if (!u.vertaaRuudukkoja(alkupRatkaisu, p1.annaRuudut())) {
+            p1.tayta(p1.getRuudut(), 1,0, false);
+            if (!u.vertaaRuudukkoja(alkupRatkaisu, p1.getRuudut())) {
                 virheellistenLkm++;
             }   
         }
@@ -103,10 +103,10 @@ public class SudokugeneraattoriTest {
     
     @Test
     public void tyhjentaaLaudan() {
-        p.asetaRuudut(u.valmisPohja4());
+        p.setRuudut(u.valmisPohja4());
         p.tyhjennaRuudutJaRuutulista();
         int[][] tyhjaLauta = new int[9][9];
-        assertArrayEquals(tyhjaLauta, p.annaRuudut());
+        assertArrayEquals(tyhjaLauta, p.getRuudut());
     }
   
 }

@@ -20,11 +20,11 @@ public class VaikeusasteKasittelija implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("1")) {
-            ui.asetaVaikeusaste(Vaikeusaste.HELPPO);
+            ui.setVaikeusaste(Vaikeusaste.HELPPO);
         } else if (e.getActionCommand().equals("2")) {
-            ui.asetaVaikeusaste(Vaikeusaste.KESKITASO);
+            ui.setVaikeusaste(Vaikeusaste.KESKITASO);
         } else {
-            ui.asetaVaikeusaste(Vaikeusaste.VAIKEA);
+            ui.setVaikeusaste(Vaikeusaste.VAIKEA);
         }
 
     }

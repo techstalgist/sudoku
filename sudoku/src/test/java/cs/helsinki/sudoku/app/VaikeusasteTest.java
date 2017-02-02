@@ -12,7 +12,7 @@ public class VaikeusasteTest {
     @Test
     public void antaaMinuutitJaSekunnit() {
         v = Vaikeusaste.HELPPO;
-        assertEquals(3, v.annaMinuutit());
-        assertEquals(0, v.annaSekunnit());
+        assertEquals(3, v.getMinuutit());
+        assertEquals(0, v.getSekunnit());
     }
 }

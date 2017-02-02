@@ -10,6 +10,11 @@ public class Pelimoottori {
     private Sudokugeneraattori generaattori;
     private Sudokupeli peli;
     
+    /**
+    * Luo uuden Pelimoottori-olion ja asettaa sille oliomuuttujaksi annetun Sudokugeneraattorin.
+    * @param generaattori Sudokugeneraattori, jonka toiminnot ovat moottorin käytössä.
+    */
+    
     public Pelimoottori(Sudokugeneraattori generaattori) {
         this.generaattori = generaattori;
     }
@@ -24,9 +29,9 @@ public class Pelimoottori {
     
     public Sudokupeli uusiPeli(Vaikeusaste aste) {
         generaattori.tyhjennaRuudutJaRuutulista();
-        generaattori.tayta(generaattori.annaRuudut(), 1, 0, true, false);
-        generaattori.asetaRatkaisu();
-        generaattori.asetaVaikeusaste(aste);
+        generaattori.tayta(generaattori.getRuudut(), 1, 0, false);
+        generaattori.asetaPelilautaRatkaisuksi();
+        generaattori.setVaikeusaste(aste);
         generaattori.tyhjennaRuutujaTaydeltaLaudalta();
         Sudokupeli uusiPeli = generaattori.annaUusiSudokupeli();
         this.peli = uusiPeli;
@@ -62,8 +67,8 @@ public class Pelimoottori {
     * @return int-taulukko jossa senhetkinen pelilauta esitetty numeroina.
     */
     
-    public int[][] annaPelilauta() {
-        return peli.annaPelilauta();
+    public int[][] pyydaPelilauta() {
+        return peli.getPelilauta();
     }
 
 }

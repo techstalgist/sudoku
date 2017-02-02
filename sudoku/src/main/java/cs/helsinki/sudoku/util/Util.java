@@ -7,6 +7,11 @@ import java.util.ArrayList;
  */
 
 public class Util {
+    
+    /**
+    * Palauttaa listan jossa luvut 1-9.
+    * @return ArrayList jossa luvut 1-9
+    */
 
     public static ArrayList<Integer> yhdeksanLukua() {
         ArrayList<Integer> luvut = new ArrayList<>();
@@ -15,6 +20,12 @@ public class Util {
         }
         return luvut;
     }
+    
+    /**
+    * Tulostaa System.outiin annetut ruudut annetun rivi/sarakepituuden perusteella.
+    * @param koko rivi/sarakepituus
+    * @param tulostettavatRuudut pelilaudan ruudut, jotka tulostetaan
+    */
 
     public static void tulosta(int koko, int[][] tulostettavatRuudut) {
         System.out.println("-----");

@@ -15,7 +15,15 @@ public class Sudokupeli {
     private RuudunStatus[][] ruutujenStatukset;
     private final int[][] ratkaisu;
     private Vaikeusaste vaikeusaste;
-
+    
+    /**
+    * Luo uuden Sudokupeli-olion annetun pelilaudalla, ratkaisulla ja vaikeusasteella.
+    * @param lauta pelilauta, joka on valmis pelattavaksi
+    * @param ratkaisu pelin ratkaisu
+    * @param vaikeusaste pelin vaikeusaste
+    * Konstruktorissa kutsutaan myös metodia, joka alustaa ruutujen statukset.
+    */
+    
     public Sudokupeli(int[][] lauta, int[][] ratkaisu, Vaikeusaste vaikeusaste) {
         this.koko = 9;
         this.lauta = lauta;
@@ -23,13 +31,8 @@ public class Sudokupeli {
         this.ratkaisu = ratkaisu;
         this.vaikeusaste = vaikeusaste;
     }
-    
-    /**
-    * Metodi palauttaa senhetkisen pelilaudan.
-    * @return pelilauta kokonaislukutaulukkona
-    */
 
-    public int[][] annaPelilauta() {
+    public int[][] getPelilauta() {
         return lauta;
     }
     
@@ -57,22 +60,12 @@ public class Sudokupeli {
     public boolean valmis() {
         return Arrays.deepEquals(lauta, ratkaisu);
     }
-    
-    /**
-    * Metodi palauttaa Sudokupelin vaikeusasteen.
-    * @return vaikeusate
-    */
 
-    public Vaikeusaste annaVaikeusaste() {
+    public Vaikeusaste getVaikeusaste() {
         return vaikeusaste;
     }
     
-    /**
-    * Metodi palauttaa senhetkiset pelilaudan ruutujen statukset.
-    * @return taulukko ruutujen statuksista
-    */
-
-    public RuudunStatus[][] annaStatukset() {
+    public RuudunStatus[][] getStatukset() {
         return ruutujenStatukset;
     }
 

@@ -20,7 +20,7 @@ public abstract class Nakyma {
         this.hallinta = hallinta;
     }
     
-    public JPanel annaSisalto() {
+    public JPanel getSisalto() {
         return sisalto;
     }
     

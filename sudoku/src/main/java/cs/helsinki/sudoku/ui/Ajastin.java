@@ -46,7 +46,7 @@ public class Ajastin implements Runnable {
         ses.shutdown();
     }
 
-    public void runUntil(ScheduledExecutorService executor, long period, TimeUnit unit) {
+    public void ajaKunnes(ScheduledExecutorService executor, long period, TimeUnit unit) {
         self = executor.scheduleAtFixedRate(this, 0, period, unit);
     }
 }

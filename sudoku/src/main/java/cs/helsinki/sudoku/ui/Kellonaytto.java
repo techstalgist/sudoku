@@ -49,7 +49,7 @@ public class Kellonaytto {
         return minuutitString + ":" + sekunnitString;
     }
     
-    public JLabel annaSisalto() {
+    public JLabel getSisalto() {
         return label;
     }
     

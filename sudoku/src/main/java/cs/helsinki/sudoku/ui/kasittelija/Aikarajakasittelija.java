@@ -21,9 +21,9 @@ public class Aikarajakasittelija implements ItemListener {
     @Override
     public void itemStateChanged(ItemEvent e) {
         if (e.getStateChange() == ItemEvent.DESELECTED) {
-            kali.asetaKaytaAikarajaa(false);
+            kali.setKaytaAikarajaa(false);
         } else {
-            kali.asetaKaytaAikarajaa(true);
+            kali.setKaytaAikarajaa(true);
         }
     }
     

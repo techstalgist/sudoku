@@ -12,6 +12,6 @@ public class RuudunStatusTest {
     
     @Test
     public void antaaVarin() {
-       assertEquals(Color.YELLOW, RuudunStatus.TAYTETTAVA.annaVari()); 
+       assertEquals(Color.YELLOW, RuudunStatus.TAYTETTAVA.getVari()); 
     }
 }

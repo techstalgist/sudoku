@@ -10,6 +10,14 @@ import java.util.ArrayList;
  */
 
 public class SopivatLuvut {
+    
+    /**
+    * Laskee pelilaudan ruudulle siihen sopivat luvut.
+    * @param lauta pelilauta
+    * @param rivi rivi
+    * @param sarake sarake
+    * @return ArrayList jossa sopivat luvut
+    */
 
     public static ArrayList<Integer> laskeSopivatLuvut(int[][] lauta, int rivi, int sarake) {
 
@@ -26,6 +34,15 @@ public class SopivatLuvut {
 
         return sopivatLuvut;
     }
+    
+    /**
+    * Kertoo onko annettu luku pelilaudan ruutuun sopiva luku.
+    * @param luku annettu luku
+    * @param lauta pelilauta
+    * @param rivi rivi
+    * @param sarake sarake
+    * @return true jos on sopiva, false muuten
+    */
 
     public static boolean annettuLukuOnSopivaLuku(int luku, int[][] lauta, int rivi, int sarake) {
         ArrayList<Integer> sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
@@ -33,12 +50,27 @@ public class SopivatLuvut {
         return sopivatLuvut.contains((Integer) luku);
     }
     
+    /**
+    * Kertoo, että jos pelilaudan ruudussa nyt oleva luku tyhjennettäisiin, niin olisiko alkuperäinen luku yksi ruutuun sopivista luvuista.
+    * @param lauta pelilauta
+    * @param rivi rivi
+    * @param sarake sarake
+    * @return true jos on sopiva, false muuten
+    */
+    
     public static boolean ruudunLukuOnSopivaLuku(int[][] lauta, int rivi, int sarake) {
         Integer alkupLuku = lauta[rivi][sarake];
         int[][] kloonattuLauta = kloonaa(lauta);
         kloonattuLauta[rivi][sarake] = 0;
         return laskeSopivatLuvut(kloonattuLauta, rivi, sarake).contains(alkupLuku);
     }
+    
+    /**
+    * Laskee pelilaudan riville sopivat luvut.
+    * @param lauta pelilauta
+    * @param rivi rivi
+    * @return ArrayList jossa sopivat luvut
+    */
 
     public static ArrayList<Integer> rivinSallitutLuvut(int[][] lauta, int rivi) {
         ArrayList<Integer> luvut = yhdeksanLukua();
@@ -51,6 +83,13 @@ public class SopivatLuvut {
 
         return luvut;
     }
+    
+    /**
+    * Laskee pelilaudan sarakkeeseen sopivat luvut.
+    * @param lauta pelilauta
+    * @param sarake sarake
+    * @return ArrayList jossa sopivat luvut
+    */
 
     public static ArrayList<Integer> sarakkeenSallitutLuvut(int[][] lauta, int sarake) {
         ArrayList<Integer> luvut = yhdeksanLukua();
@@ -63,6 +102,14 @@ public class SopivatLuvut {
 
         return luvut;
     }
+    
+    /**
+    * Laskee pelilaudan osaruutuun sopivat luvut.
+    * @param lauta pelilauta
+    * @param rivi rivi
+    * @param sarake sarake
+    * @return ArrayList jossa sopivat luvut
+    */
 
     public static ArrayList<Integer> osaruudunSallitutLuvut(int[][] lauta, int rivi, int sarake) {
         ArrayList<Integer> luvut = yhdeksanLukua();
@@ -79,6 +126,12 @@ public class SopivatLuvut {
 
         return luvut;
     }
+    
+    /**
+    * Palauttaa listan pelilaudan ruuduista, joille ei ole yhtään sopivaa lukua.
+    * @param lauta pelilauta
+    * @return ArrayList jossa lista ruuduista (lukupareina)
+    */
 
     public static ArrayList<SimpleEntry<Integer, Integer>> annaTyhjatRuudutJoilleEiSopiviaLukuja(int[][] lauta) {
         ArrayList<SimpleEntry<Integer, Integer>> tyhjatRuudutJoilleEiSopiviaLukuja = new ArrayList<>();

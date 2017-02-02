@@ -27,8 +27,8 @@ public class PelimoottoriTest {
     @Test
     public void luoPelinJossaOikeaMaaraTyhjia() {
        m.uusiPeli(aste);
-       int[][] lauta = m.annaPelilauta();
-       assertEquals(aste.annaTyhjennettavienLkm(), tyhjienLkm(lauta));
+       int[][] lauta = m.pyydaPelilauta();
+       assertEquals(aste.getTyhjennettavienLkm(), tyhjienLkm(lauta));
     }
     
     @Test
@@ -40,7 +40,7 @@ public class PelimoottoriTest {
     @Test
     public void asettaaRatkaisunPeliaLuotaessa() {
        m.uusiPeli(aste);
-       int[][] ratkaisu = s.annaRatkaisu();
+       int[][] ratkaisu = s.getRatkaisu();
        assertEquals(9, ratkaisu.length);
        assertEquals(9, ratkaisu[0].length);
        assertEquals(0, tyhjienLkm(ratkaisu));
@@ -49,19 +49,19 @@ public class PelimoottoriTest {
     @Test
     public void tyhjentaaRuudutJaRuutulistanJosAloitetaanUusiPeli() {
        SudokugeneraattoriTestUtil u = new SudokugeneraattoriTestUtil(); 
-       s.asetaRuudut(u.valmisPohja1());
-       s.asetaRuutulista(u.ruutulista());
+       s.setRuudut(u.valmisPohja1());
+       s.setRuutulista(u.ruutulista());
        // teoriassa on mahdollista, että generaattori loisi täsmälleen saman pelin, mutta tämä on niin epätodennäköistä, että mahdollisuus sivuutetaan.
        m.uusiPeli(aste);
-       assertFalse(Arrays.deepEquals(s.annaRuudut(), u.valmisPohja1()));
+       assertFalse(Arrays.deepEquals(s.getRuudut(), u.valmisPohja1()));
        // voi arpoa saman ruutulistankin teoriassa
-       assertFalse(s.annaRuutulista().equals(u.ruutulista()));
+       assertFalse(s.getRuutulista().equals(u.ruutulista()));
     }
     
     @Test
     public void antaaLaudanJossaOikeaRiviJaSarakemaara() {
        m.uusiPeli(aste);
-       int[][] lauta = m.annaPelilauta();
+       int[][] lauta = m.pyydaPelilauta();
        assertEquals(9, lauta.length);
        assertEquals(9, lauta[0].length);
     }
@@ -75,7 +75,7 @@ public class PelimoottoriTest {
     @Test
     public void paivittaaArvonLaudalla() {
        Sudokupeli p = m.uusiPeli(aste);
-       int[][] lauta = m.annaPelilauta();
+       int[][] lauta = m.pyydaPelilauta();
        int rivi = 0;
        int sarake = 0;
        RuudunStatus[][] statukset = new RuudunStatus[9][9];
@@ -89,7 +89,7 @@ public class PelimoottoriTest {
                }
            }
        }
-       assertEquals(3, m.annaPelilauta()[rivi][sarake]);
+       assertEquals(3, m.pyydaPelilauta()[rivi][sarake]);
        assertTrue(statukset[0][0] != null);
     }
 }

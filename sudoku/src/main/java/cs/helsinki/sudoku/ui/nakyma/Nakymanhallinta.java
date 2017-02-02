@@ -44,8 +44,8 @@ public class Nakymanhallinta {
 
         aloitus.tayta();
 
-        panelContainer.add(pelinaytto.annaSisalto(), "peli");
-        panelContainer.add(aloitus.annaSisalto(), "aloitus");
+        panelContainer.add(pelinaytto.getSisalto(), "peli");
+        panelContainer.add(aloitus.getSisalto(), "aloitus");
 
         cl.show(panelContainer, "aloitus");
         frame.add(panelContainer);
@@ -84,7 +84,7 @@ public class Nakymanhallinta {
 
     public void kaynnistaAjastinPelinaytolla() {
         if (kali.kaytaAikarajaa()) {
-            pelinaytto.kaynnistaAjastin(kali.annaVaikeusaste());
+            pelinaytto.kaynnistaAjastin(kali.getVaikeusaste());
         }
     }
 

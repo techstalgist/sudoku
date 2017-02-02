@@ -24,15 +24,15 @@ public class SudokupeliTest {
 
     @Test
     public void antaaLaudan() {
-        Assert.assertArrayEquals(lauta, p.annaPelilauta());
+        Assert.assertArrayEquals(lauta, p.getPelilauta());
     }
 
     @Test
     public void alustaaStatukset() {
-        RuudunStatus[][] statukset = p.annaStatukset();
+        RuudunStatus[][] statukset = p.getStatukset();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (p.annaPelilauta()[i][j] > 0) {
+                if (p.getPelilauta()[i][j] > 0) {
                     assertEquals(RuudunStatus.VALMIIKSI_TAYTETTY, statukset[i][j]);
                 } else {
                     assertEquals(RuudunStatus.TAYTETTAVA, statukset[i][j]);
@@ -48,7 +48,7 @@ public class SudokupeliTest {
         int sarake = 0;
         RuudunStatus[][] statukset = p.paivitaArvo(oikeaArvo, rivi, sarake);
         assertEquals(RuudunStatus.OIKEIN_TAYTETTY, statukset[rivi][sarake]);
-        assertEquals(oikeaArvo, p.annaPelilauta()[rivi][sarake]);
+        assertEquals(oikeaArvo, p.getPelilauta()[rivi][sarake]);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class SudokupeliTest {
         int sarake = 0;
         RuudunStatus[][] statukset = p.paivitaArvo(oikeaArvo, rivi, sarake);
         assertEquals(RuudunStatus.VAARIN_TAYTETTY, statukset[rivi][sarake]);
-        assertEquals(oikeaArvo, p.annaPelilauta()[rivi][sarake]);
+        assertEquals(oikeaArvo, p.getPelilauta()[rivi][sarake]);
     }
 
     @Test
@@ -90,6 +90,6 @@ public class SudokupeliTest {
     @Test
     public void antaaVaikeusasteen() {
         Sudokupeli p2 = new Sudokupeli(ratkaisu, ratkaisu, aste);
-        assertEquals(aste, p2.annaVaikeusaste());
+        assertEquals(aste, p2.getVaikeusaste());
     }
 }

@@ -58,11 +58,11 @@ public class Pelinakyma extends Nakyma {
                 if (luku > 0) {
                     ruudut[i][j] = new JTextField(luku.toString());
                     ruudut[i][j].setEditable(false);
-                    ruudut[i][j].setBackground(RuudunStatus.VALMIIKSI_TAYTETTY.annaVari());
+                    ruudut[i][j].setBackground(RuudunStatus.VALMIIKSI_TAYTETTY.getVari());
                 } else {
                     ruudut[i][j] = new JTextField("");
                     ruudut[i][j].setEditable(true);
-                    ruudut[i][j].setBackground(RuudunStatus.TAYTETTAVA.annaVari());
+                    ruudut[i][j].setBackground(RuudunStatus.TAYTETTAVA.getVari());
                 }
                 ruudut[i][j].setHorizontalAlignment(JTextField.CENTER);
                 ruudut[i][j].setFont(FONTTI);
@@ -86,7 +86,7 @@ public class Pelinakyma extends Nakyma {
         if (kali.kaytaAikarajaa()) {
             JLabel teksti = new JLabel("Aikaa jäljellä: ");
             alapalkki.add(teksti);
-            alapalkki.add(kello.annaSisalto());
+            alapalkki.add(kello.getSisalto());
         }
 
         sisalto.add(alapalkki, BorderLayout.SOUTH);
@@ -113,7 +113,7 @@ public class Pelinakyma extends Nakyma {
     }
 
     public void paivitaVari(JTextField kentta, RuudunStatus status) {
-        kentta.setBackground(status.annaVari());
+        kentta.setBackground(status.getVari());
     }
 
     public void paivitaVarit(RuudunStatus[][] uudetStatukset) {
@@ -125,14 +125,14 @@ public class Pelinakyma extends Nakyma {
     }
 
     public void kaynnistaAjastin(Vaikeusaste aste) {
-        int halututMinuutit = aste.annaMinuutit();
-        int halututSekunnit = aste.annaSekunnit();
+        int halututMinuutit = aste.getMinuutit();
+        int halututSekunnit = aste.getSekunnit();
         // pitää lisätä yksi, koska muuten laskuri alkaisi kohdasta halututSekunnit - 1.
         long loppumisaika = System.currentTimeMillis() + 1000 * (halututMinuutit * 60 + halututSekunnit + 1);
         final ScheduledExecutorService ses = Executors.newScheduledThreadPool(1);
         this.ajastin = new Ajastin(loppumisaika, ses, kello);
 
-        ajastin.runUntil(ses, 1, TimeUnit.SECONDS);
+        ajastin.ajaKunnes(ses, 1, TimeUnit.SECONDS);
     }
 
     public void keskeytaAjastin() {
