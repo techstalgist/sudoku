@@ -17,5 +17,5 @@
     <suppress files="AloitusKasittelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="UusiPeliKasittelija.java" checks="[a-zA-Z0-9]*"/>
     <suppress files="VaikeusasteKasittelija.java" checks="[a-zA-Z0-9]*"/>
-    
+    <suppress files="Ilmoitus.java" checks="[a-zA-Z0-9]*"/>
 </suppressions>

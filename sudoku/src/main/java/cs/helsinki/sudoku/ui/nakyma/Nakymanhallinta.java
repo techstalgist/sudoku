@@ -5,7 +5,6 @@ import cs.helsinki.sudoku.ui.Kayttoliittyma;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -24,6 +23,10 @@ public class Nakymanhallinta {
 
     public Nakymanhallinta(Kayttoliittyma kali) {
         this.kali = kali;
+    }
+    
+    public JFrame getFrame() {
+        return frame;
     }
 
     public void init() {
@@ -54,16 +57,18 @@ public class Nakymanhallinta {
     public void naytaValmisIlmoitus() {
         keskeytaAjastinPelinaytolla();
         String[] painikkeet = {"Lopeta", "Uusi peli"};
-        int vastaus = JOptionPane.showOptionDialog(frame, "Täytit Sudokun oikein. Onneksi olkoon!\nVoit joko aloittaa uuden pelin tai lopettaa sovelluksen.",
-                "Sudoku täytetty oikein!", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, painikkeet,
-                painikkeet[0]);
-
-        if (vastaus == 1) {
-            naytaAloitusnaytto();
-        } else {
-            System.exit(0);
-        }
-
+        String teksti = "Täytit Sudokun oikein. Onneksi olkoon!\nVoit joko aloittaa uuden pelin tai lopettaa sovelluksen.";
+        String otsikko = "Sudoku täytetty oikein!";
+        Ilmoitus valmisIlmoitus = new Ilmoitus(painikkeet, teksti, otsikko, this);
+        valmisIlmoitus.nayta();
+    }
+    
+    public void naytaAikaLoppuiIlmoitus() {
+        String[] painikkeet = {"Lopeta", "Uusi peli"};
+        String teksti = "Et saanut täytettyä Sudokua määräajassa. Voit joko aloittaa uuden pelin tai lopettaa sovelluksen.";
+        String otsikko = "Aika loppui kesken.";
+        Ilmoitus aikaLoppuiIlmoitus = new Ilmoitus(painikkeet, teksti, otsikko, this);
+        aikaLoppuiIlmoitus.nayta();
     }
 
     public void naytaPelinaytto() {
@@ -92,18 +97,5 @@ public class Nakymanhallinta {
         if (kali.kaytaAikarajaa()) {
             pelinaytto.keskeytaAjastin();
         }
-    }
-
-    public void naytaAikaLoppuiIlmoitus() {
-        String[] painikkeet = {"Lopeta", "Uusi peli"};
-        int vastaus = JOptionPane.showOptionDialog(frame, "Et saanut täytettyä Sudokua määräajassa. Voit joko aloittaa uuden pelin tai lopettaa sovelluksen.",
-                "Aika loppui kesken", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, painikkeet,
-                painikkeet[0]);
-
-        if (vastaus == 1) {
-            naytaAloitusnaytto();
-        } else {
-            System.exit(0);
-        }
-    }
+    }    
 }
