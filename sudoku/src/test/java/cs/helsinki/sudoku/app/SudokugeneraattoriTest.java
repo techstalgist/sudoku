@@ -56,15 +56,7 @@ public class SudokugeneraattoriTest {
         p.tayta(p.getRuudut(),1,0, false);
         assertArrayEquals(alkupRatkaisu, p.getRuudut());
     }
-    
-    @Test
-    public void laskeeOikeinRuudunSopivatLuvut() {
-        p.setRuudut(u.valmisPohja4());
-        ArrayList<Integer> sopivat = p.laskeSopivatLuvutIlmanAlkuperaista(p.getRuudut(), 6, 6);
-        ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
-        assertTrue(oikeatSopivat.equals(sopivat));
-    }
-    
+      
     @Test 
     public void laskeeOikeinRuudunJollaVahitenSopivia() {
         p.setRuudut(u.valmisPohja4());

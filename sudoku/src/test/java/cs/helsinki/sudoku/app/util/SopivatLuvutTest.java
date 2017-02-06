@@ -55,4 +55,11 @@ public class SopivatLuvutTest {
         ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
         assertTrue(oikeatSopivat.equals(sopivat));
     }
+    
+    @Test
+    public void laskeeOikeinRuudunSopivatLuvut() {
+        ArrayList<Integer> sopivat = laskeSopivatLuvutIlmanAlkuperaista(u.valmisPohja4(), 6, 6, -1, -1, 0);
+        ArrayList<Integer> oikeatSopivat = new ArrayList<>(Arrays.asList(1, 6));
+        assertTrue(oikeatSopivat.equals(sopivat));
+    }
 }

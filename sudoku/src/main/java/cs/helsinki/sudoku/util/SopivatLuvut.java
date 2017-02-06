@@ -149,4 +149,24 @@ public class SopivatLuvut {
 
         return tyhjatRuudutJoilleEiSopiviaLukuja;
     }
+    
+     /**
+    * Metodi kutsuu laskeSopivatLuvut metodia pelilaudan tietylle ruudulle ja palauttaa listan sopivia lukuja, ilman ruudun alkuperäistä arvoa.
+    * @param lauta jota käytetään
+    * @param rivi rivi jolle sopivat luvut halutaan laskea
+    * @param sarake sarake jolle sopivat luvut halutaan laskea
+    * @param tyhjennettavanRivi jos ollaan tyhjentämässä pelilaudalta ruutuja, niin sen ruudun rivi, jolta arvo tyhjennettiin. muuten -1.
+    * @param tyhjennettavanSarake jos ollaan tyhjentämässä pelilaudalta ruutuja, niin sen ruudun sarake, jolta arvo tyhjennettiin. muuten -1.
+    * @param tyhjennettavanAlkupArvo jos ollaan tyhjentämässä pelilaudalta ruutuja, niin tyhjennettävän ruudun alkuperäinen arvo. muuten 0.
+    * @return lista jossa on ruutuun sopivat luvut (ilman ruudun alkuperäistä arvoa)
+    */
+
+    public static ArrayList<Integer> laskeSopivatLuvutIlmanAlkuperaista(int[][] lauta, int rivi, int sarake, int tyhjennettavanRivi, int tyhjennettavanSarake, int tyhjennettavanAlkupArvo) {
+
+        ArrayList<Integer> sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
+        if (rivi == tyhjennettavanRivi && sarake == tyhjennettavanSarake) {
+            sopivatLuvut.remove((Integer) tyhjennettavanAlkupArvo);
+        }
+        return sopivatLuvut;
+    }
 }
