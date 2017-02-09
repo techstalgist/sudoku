@@ -157,7 +157,27 @@
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> 
 <a class="jxr_linenumber" name="L150" href="#L150">150</a>         <strong class="jxr_keyword">return</strong> tyhjatRuudutJoilleEiSopiviaLukuja;
 <a class="jxr_linenumber" name="L151" href="#L151">151</a>     }
-<a class="jxr_linenumber" name="L152" href="#L152">152</a> }
+<a class="jxr_linenumber" name="L152" href="#L152">152</a>     
+<a class="jxr_linenumber" name="L153" href="#L153">153</a>      <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">    * Metodi kutsuu laskeSopivatLuvut metodia pelilaudan tietylle ruudulle ja palauttaa listan sopivia lukuja, ilman ruudun alkuperäistä arvoa.</em>
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> <em class="jxr_javadoccomment">    * @param lauta jota käytetään</em>
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> <em class="jxr_javadoccomment">    * @param rivi rivi jolle sopivat luvut halutaan laskea</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">    * @param sarake sarake jolle sopivat luvut halutaan laskea</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">    * @param tyhjennettavanRivi jos ollaan tyhjentämässä pelilaudalta ruutuja, niin sen ruudun rivi, jolta arvo tyhjennettiin. muuten -1.</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_javadoccomment">    * @param tyhjennettavanSarake jos ollaan tyhjentämässä pelilaudalta ruutuja, niin sen ruudun sarake, jolta arvo tyhjennettiin. muuten -1.</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> <em class="jxr_javadoccomment">    * @param tyhjennettavanAlkupArvo jos ollaan tyhjentämässä pelilaudalta ruutuja, niin tyhjennettävän ruudun alkuperäinen arvo. muuten 0.</em>
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> <em class="jxr_javadoccomment">    * @return lista jossa on ruutuun sopivat luvut (ilman ruudun alkuperäistä arvoa)</em>
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_javadoccomment">    */</em>
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 
+<a class="jxr_linenumber" name="L164" href="#L164">164</a>     <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> ArrayList&lt;Integer&gt; laskeSopivatLuvutIlmanAlkuperaista(<strong class="jxr_keyword">int</strong>[][] lauta, <strong class="jxr_keyword">int</strong> rivi, <strong class="jxr_keyword">int</strong> sarake, <strong class="jxr_keyword">int</strong> tyhjennettavanRivi, <strong class="jxr_keyword">int</strong> tyhjennettavanSarake, <strong class="jxr_keyword">int</strong> tyhjennettavanAlkupArvo) {
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 
+<a class="jxr_linenumber" name="L166" href="#L166">166</a>         ArrayList&lt;Integer&gt; sopivatLuvut = laskeSopivatLuvut(lauta, rivi, sarake);
+<a class="jxr_linenumber" name="L167" href="#L167">167</a>         <strong class="jxr_keyword">if</strong> (rivi == tyhjennettavanRivi &amp;&amp; sarake == tyhjennettavanSarake) {
+<a class="jxr_linenumber" name="L168" href="#L168">168</a>             sopivatLuvut.remove((Integer) tyhjennettavanAlkupArvo);
+<a class="jxr_linenumber" name="L169" href="#L169">169</a>         }
+<a class="jxr_linenumber" name="L170" href="#L170">170</a>         <strong class="jxr_keyword">return</strong> sopivatLuvut;
+<a class="jxr_linenumber" name="L171" href="#L171">171</a>     }
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2017. All rights reserved.</div>
