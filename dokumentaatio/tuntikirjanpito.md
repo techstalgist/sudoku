@@ -15,4 +15,4 @@ Päivä | Tunnit | Kuvaus
 05.02.2017 | 1h | ilmoitus omaksi luokaksi
 06.02.2017 | 1h | sekvenssikaaviota
 10.02.2017 | 2h | Raportointia
-12.02.2017 | 1h | sekvenssikaaviota
+12.02.2017 | 1,5h | sekvenssikaavioita
