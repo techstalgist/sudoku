@@ -26,4 +26,10 @@ Pelaaja
 
 ## Sekvenssikaaviot
 
+### Uusi peli
+
 ![Sekvenssikaavio uuden pelin luonnista](uusiPeli.png)
+
+
+### Validin luvun syöttö pelilaudalle ja valmiin pelin käsittely
+![Sekvenssikaavio validin luvun syöttämisestä pelilaudalle, ja valmiin pelin käsittely](luvun-syotto.png)
