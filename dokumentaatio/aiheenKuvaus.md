@@ -23,3 +23,7 @@ Pelaaja
 ## Luokkakaavio
 
 ![Luokkakaavio](luokkakaavio.png)
+
+## Sekvenssikaaviot
+
+![Sekvenssikaavio uuden pelin luonnista](uusiPeli.png)
