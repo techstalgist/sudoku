@@ -14,3 +14,5 @@ Java-sovellus, jolla voi pelata Sudokua. Sovelluksessa voi valita vaikeusasteen 
 [Pit-raportti](https://htmlpreview.github.io/?https://github.com/techstalgist/sudoku/blob/master/dokumentaatio/pit/index.html)
 
 [Checkstyle-raportti](https://htmlpreview.github.io/?https://github.com/techstalgist/sudoku/blob/master/dokumentaatio/checkstyle/checkstyle.html)
+
+[Javadoc](https://htmlpreview.github.io/?https://github.com/techstalgist/sudoku/blob/master/dokumentaatio/javadoc/index.html)
