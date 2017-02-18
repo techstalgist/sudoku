@@ -65,16 +65,10 @@ public class PelimoottoriTest {
        assertEquals(9, lauta.length);
        assertEquals(9, lauta[0].length);
     }
-    
-    @Test
-    public void antaaPelin() {
-       Sudokupeli p = m.uusiPeli(aste);
-       assertThat(p, instanceOf(Sudokupeli.class));
-    }
-    
+      
     @Test
     public void paivittaaArvonLaudalla() {
-       Sudokupeli p = m.uusiPeli(aste);
+       m.uusiPeli(aste);
        int[][] lauta = m.pyydaPelilauta();
        int rivi = 0;
        int sarake = 0;

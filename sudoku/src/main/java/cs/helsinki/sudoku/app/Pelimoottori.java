@@ -24,10 +24,9 @@ public class Pelimoottori {
     *
     * @param   aste   Haluttu vaikeusaste.
     * 
-    * @return valmis Sudokupeli, jossa osa ruuduista täytetty ja osa tyhjiä. 
     */
     
-    public Sudokupeli uusiPeli(Vaikeusaste aste) {
+    public void uusiPeli(Vaikeusaste aste) {
         generaattori.tyhjennaRuudutJaRuutulista();
         generaattori.tayta(generaattori.getRuudut(), 1, 0, false);
         generaattori.asetaPelilautaRatkaisuksi();
@@ -35,7 +34,6 @@ public class Pelimoottori {
         generaattori.tyhjennaRuutujaTaydeltaLaudalta();
         Sudokupeli uusiPeli = generaattori.annaUusiSudokupeli();
         this.peli = uusiPeli;
-        return peli;
     }
     
     /**
