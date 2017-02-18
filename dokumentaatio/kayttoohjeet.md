@@ -3,7 +3,8 @@
 ## Sovelluksen käynnistäminen
 
 Tuplaklikkaa .jar tiedostoa tai aja komentoriviltä:
-java -jar sudoku-1.0.jar
+
+`java -jar sudoku-1.0.jar`
 
 ## Uuden pelin luonti
 
