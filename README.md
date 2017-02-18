@@ -5,6 +5,10 @@ Java-sovellus, jolla voi pelata Sudokua. Sovelluksessa voi valita vaikeusasteen 
 ## Dokumentaatio
 [Aiheen kuvaus](dokumentaatio/aiheenKuvaus.md)
 
+[Rakennekuvaus](dokumentaatio/rakennekuvaus.md)
+
+[Käyttöohjeet](dokumentaatio/kayttoohjeet.md)
+
 [Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
 
 [Pit-raportti](https://htmlpreview.github.io/?https://github.com/techstalgist/sudoku/blob/master/dokumentaatio/pit/index.html)
