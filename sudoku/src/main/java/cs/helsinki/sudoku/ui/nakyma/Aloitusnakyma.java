@@ -17,7 +17,6 @@ import javax.swing.JRadioButton;
 /**
  * Luokka piirtää aloitusnäkymän käyttöliittymäkomponentit.
  */
-
 public class Aloitusnakyma extends Nakyma {
 
     public Aloitusnakyma(Kayttoliittyma kali, Nakymanhallinta nakyma) {
@@ -29,12 +28,13 @@ public class Aloitusnakyma extends Nakyma {
         sisalto.setLayout(new BorderLayout());
 
         JPanel content = new JPanel();
-        
+
         JLabel teksti = new JLabel();
         teksti.setText("<html><body align=\"center\"><strong>Tervetuloa pelaamaan Sudokua!</strong><br><br>"
-                        + "Valitse pelin vaikeusaste ja klikkaa Aloita peli aloittaaksesi uuden Sudoku-pelin.<br>"
-                        + "Jos haluat lisää haastetta, niin valitse Käytä aikarajaa,<br>"
-                        + "jolloin sinun täytyy ratkaista Sudoku annetussa määräajassa.</body></html>");
+                + "Valitse pelin vaikeusaste ja klikkaa Aloita peli aloittaaksesi uuden Sudoku-pelin.<br>"
+                + "Jos haluat lisää haastetta, niin valitse Käytä aikarajaa,<br>"
+                + "jolloin sinun täytyy ratkaista Sudoku annetussa määräajassa.<br>"
+                + "Pelilaudan ruutujen värikoodaus on kuvattu alla näkyvässä taulukossa.</body></html>");
         content.add(teksti);
 
         lisaaPainikkeet(content);
@@ -42,7 +42,44 @@ public class Aloitusnakyma extends Nakyma {
         valinta.addItemListener(new Aikarajakasittelija(kali));
         content.add(valinta);
         
-        
+        JLabel varit = new JLabel();
+        varit.setText("<html>\n"
+                + "<head>\n"
+                + "<style>\n"
+                + "table, th, td {\n"
+                + "    border: 1px solid black;\n"
+                + "    border-collapse: collapse; \n"
+                + "}\n"
+                + "</style>\n"
+                + "</head>\n"
+                + "<body>\n"
+                + "<table style=\"border:solid;text-align:left\">\n"
+                + "  <tr>\n"
+                + "    <th>Ruudun väri</th>\n"
+                + "    <th>Selite</th>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <td style=\"background-color:white\"></td>\n"
+                + "    <td>Valmiiksi täytetty ruutu</td>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <td style=\"background-color:yellow\"></td>\n"
+                + "    <td>Täytettävä ruutu</td>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <td style=\"background-color:#32CD32\"></td>\n"
+                + "    <td>Syöttämäsi luku on yksi sopivista luvuista (muttei välttämättä oikea luku)</td>\n"
+                + "  </tr>\n"
+                + "  <tr>\n"
+                + "    <td style=\"background-color:red\"></td>\n"
+                + "    <td>Syöttämäsi luku ei ole yksi sopivista luvuista</td>\n"
+                + "  </tr>\n"
+                + "</table>\n"
+                + "\n"
+                + "</body>\n"
+                + "</html>");
+        content.add(varit);
+
         JPanel alapalkki = new JPanel();
         JButton uusiPeli = new JButton("Aloita peli");
         UusiPeliKasittelija kasittelija = new UusiPeliKasittelija(hallinta, kali);
@@ -50,7 +87,7 @@ public class Aloitusnakyma extends Nakyma {
         alapalkki.add(uusiPeli);
 
         JPanel tyhjaa = new JPanel();
-        tyhjaa.setPreferredSize(new Dimension(600, 200));
+        tyhjaa.setPreferredSize(new Dimension(600, 100));
 
         sisalto.add(tyhjaa, BorderLayout.NORTH);
         sisalto.add(content, BorderLayout.CENTER);
