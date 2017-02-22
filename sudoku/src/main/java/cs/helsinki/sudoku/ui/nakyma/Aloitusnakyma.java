@@ -55,7 +55,7 @@ public class Aloitusnakyma extends Nakyma {
                 + "<body>\n"
                 + "<table style=\"border:solid;text-align:left\">\n"
                 + "  <tr>\n"
-                + "    <th>Ruudun väri</th>\n"
+                + "    <th>Väri</th>\n"
                 + "    <th>Selite</th>\n"
                 + "  </tr>\n"
                 + "  <tr>\n"
