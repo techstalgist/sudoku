@@ -17,3 +17,5 @@ Päivä | Tunnit | Kuvaus
 10.02.2017 | 2h | Raportointia
 12.02.2017 | 1,5h | sekvenssikaavioita
 18.02.2017 | 1,5h | pieni koodimuutos, pit, checkstyle, Javadoc HTML, Shade-plugin, rakennekuvaus, käyttöohjeet
+22.02.2017 | 2h | Aloitusnäytölle selitteet ruutujen väreistä
+26.02.2017 | 1h | Viimeistely ja JAR
